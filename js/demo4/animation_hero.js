@@ -256,8 +256,8 @@
           scrub: true,
         },
       })
-      .to("#svgStart", { opacity: 1, yPercent: -90, xPercent: 90 }, 0)
-      .to("#svgEnd", { opacity: 1, yPercent: 50, xPercent: -100 }, 0)
+      .to("#svgStart", { opacity: 1, yPercent: -118, xPercent: 83, scale: .28 }, 0)
+      .to("#svgEnd", { opacity: 1, yPercent: 90, xPercent: -90, scale: .28 }, 0)
       .to(".text-large_w", { opacity: 1, yPercent: 0, scale: 1 }, 0.4);
   });
 })();
