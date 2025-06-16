@@ -126,38 +126,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   });
 
+  let aireColor = "#EFEFEF"; // color por defecto
+  let aireReady = false;
 
-
-let aireColor = "#EFEFEF"; // color por defecto
-let aireReady = false;
-
-// Escuchar el evento si llega después
-document.addEventListener("aireSaludReady", (e) => {
-  aireReady = true;
-  aireColor = e.detail.color;
-  cornerTL.style.fill = aireColor;
-  cornerBR.style.fill = aireColor;
-  console.log("✔️ aireSaludReady recibido a tiempo", aireColor);
-});
-
-// Fallback si no llegó después de un tiempo
-setTimeout(() => {
-  if (!aireReady) {
-    console.warn("⚠️ No se recibió el evento 'aireSaludReady'. Usando color por defecto.");
+  // Escuchar el evento si llega después
+  document.addEventListener("aireSaludReady", (e) => {
+    aireReady = true;
+    aireColor = e.detail.color;
     cornerTL.style.fill = aireColor;
     cornerBR.style.fill = aireColor;
-  }
-}, 1500); // espera 1.5 segundos para ver si llegó el evento
+    console.log("✔️ aireSaludReady recibido a tiempo", aireColor);
+  });
 
-
-
-
-
-
+  // Fallback si no llegó después de un tiempo
+  setTimeout(() => {
+    if (!aireReady) {
+      console.warn(
+        "⚠️ No se recibió el evento 'aireSaludReady'. Usando color por defecto."
+      );
+      cornerTL.style.fill = aireColor;
+      cornerBR.style.fill = aireColor;
+    }
+  }, 1500); // espera 1.5 segundos para ver si llegó el evento
 
   // Fallback si el evento no ocurre en cierto tiempo (5 segundos)
   setTimeout(() => {
-    if (!aireSaludRecibido) {
+    if (!aireReady) {
       console.warn(
         "⚠️ No se recibió el evento 'aireSaludReady'. Usando color por defecto."
       );

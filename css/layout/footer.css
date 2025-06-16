@@ -1,6 +1,6 @@
 #contact {
   background-color: #222;
-  color: #eee;
+  color: #EFEFEF;
   padding: 40px 20px;
   position: relative; /* o fixed, si quieres que quede fijo */
   z-index: 1001;
@@ -62,7 +62,7 @@ textarea {
 
 button {
   background-color: #0077b5;
-  color: white;
+  color: EFEFEF;
   border: none;
   padding: 12px;
   border-radius: 5px;
@@ -94,7 +94,7 @@ button:hover {
   margin-top: 40px;
   text-align: center;
   font-size: 0.9rem;
-  color: #aaa;
+  color: #EFEFEF;
 }
 
 .footer-bottom a {
@@ -128,4 +128,9 @@ button:hover {
   .footer-info {
     min-width: 100%;
   }
+}
+
+
+.color_brand2 {
+  color: #EFEFEF;
 }
