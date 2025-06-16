@@ -1,0 +1,111 @@
+.loading {
+  height: 100vh;
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#loader-overlay {
+  position: fixed;
+  z-index: 1000;
+  background: #0c0c0c;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#loader-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  display: none;
+}
+
+.loader {
+  text-align: center;
+  padding: 2rem 3rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.text_load {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+#LoadSliderContainer {
+  width: 10%;
+  height: 2px;
+  background-color: #b7b7b7;
+}
+
+#LoadSlider {
+  height: 100%;
+  width: 0%;
+  background-color: #ffffff;
+  transition: width 0.1s linear;
+}
+
+#loader-overlay{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  background:#0c0c0c;color:#fff;font-family:sans-serif;
+}
+
+
+
+/* Parpadeo del texto */
+#loading {
+  animation: blinkText 1s step-start infinite;
+  font-weight: bold;
+}
+
+/* Animación de puntos */
+@keyframes dots {
+  0% { content: "Loading"; }
+  25% { content: "Loading."; }
+  50% { content: "Loading.."; }
+  75% { content: "Loading..."; }
+  100% { content: "Loading"; }
+}
+
+/* Para mostrar los puntos usando ::after */
+#loading::after {
+  content: "Loading";
+  animation: dots 1.2s steps(4, end) infinite;
+}
+
+@keyframes blinkText {
+  50% {
+    opacity: 0.4;
+  }
+}
+/* Íconos en las esquinas */
+.corner-icon1 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  z-index: 2;
+}
+
+.top-left1 {
+  top: 0;
+  left: 0;
+}
+
+.bottom-right1 {
+  bottom: 0;
+  right: 0;
+}
+
+
+

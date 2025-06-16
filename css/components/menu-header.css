@@ -1,0 +1,72 @@
+
+.menu-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  padding: 0 2rem;
+  z-index: 800;
+}
+
+/* 1. Header fijo y 100 % de ancho */
+#site-header {
+  position: fixed;
+  inset: 0; /* top:0 right:0 bottom:0 left:0 → se extiende a lo ancho */
+  pointer-events: none; /* lo quitaremos después con JS */
+  display: flex;
+      z-index: 801;
+
+  
+}
+
+.menu-right {
+  position: absolute;
+  
+  top: 1.2rem;
+  right: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  transition: opacity 0.4s ease;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.menu__item {
+  color: white; /* Texto blanco */
+  text-decoration: none;
+  font-weight: 600;
+
+}
+
+.lang-btn {
+  /* position: absolute;
+  top: 20px;
+  right: 20px; */
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff6f61, #ffcc70);
+  border: none;
+  border-radius: 6px 0px 6px 0px;
+  cursor: pointer;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  z-index: 3003;
+}
+
+.lang-btn:hover {
+  background: linear-gradient(135deg, #ffcc70, #ff6f61);
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 6px 18px rgba(255, 111, 97, 0.4);
+}
+
+.lang-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
