@@ -1,192 +1,36 @@
-// (() => {
-//   /* ---------- 0) estado global ---------- */
-//   let currentIconColor = "#18B2E8"; // valor por defecto
-
-//   /* ---------- 1) LISTENER ÍNDICE UV ---------- */
-//   document.addEventListener("uvReady", (e) => {
-//     const match = e.detail.src.match(/(\d+)\.gif$/);
-//     const num = match ? +match[1] : null;
-
-//     const uvColors = {
-//       0: "#18B2E8",
-//       1: "#18B2E8",
-//       2: "#18B2E8",
-//       3: "#9244D6",
-//       4: "#9244D6",
-//       5: "#9244D6",
-//       6: "#f66b58",
-//       7: "#f66b58",
-//       8: "#FFC043",
-//       9: "#FFC043",
-//       10: "#FFC043",
-//       11: "#FFC043",
-//       12: "#F86230",
-//       13: "#F86230",
-//       14: "#F86230",
-//       15: "#F86230",
-//     };
-//     const color = num != null && num in uvColors ? uvColors[num] : "#18B2E8";
-
-//     // Ejemplo de uso en tu mark
-//     const mark = document.querySelector(".hx-3");
-//     if (mark) mark.style.setProperty("--color-highlight-end", color);
-//   });
-
-//   /* ---------- 2) LISTENER AIRE Y SALUD ---------- */
-//   document.addEventListener("aireSaludReady", (e) => {
-//     const { textoIndice, color } = e.detail;
-//     currentIconColor = color; // ① guarda el color
-//     document.documentElement.style.setProperty(
-//       "--color-highlight-start",
-//       color
-//     ); // ② actualiza la var. CSS
-
-//     // ---- actualiza título
-//     const h2 = document.querySelector(".content__title_W");
-//     if (h2) {
-//       const fixed = h2.querySelector("span");
-//       h2.innerHTML = "";
-//       if (fixed) h2.appendChild(fixed);
-
-//       const span = document.createElement("span");
-//       span.textContent = textoIndice;
-//       span.style.fontWeight = "bold";
-//       span.style.color = color;
-//       h2.appendChild(span);
-//     }
-//   });
-
-//   /* ---------- 3) FETCH al sitio ---------- */
-//   const targetUrl = "http://aire.cdmx.gob.mx/default.php";
-//   const proxyUrl = "https://api.allorigins.win/get?url=";
-
-//   fetch(proxyUrl + encodeURIComponent(targetUrl))
-//     .then((r) => r.text())
-//     .then((html) => {
-//       const doc = new DOMParser().parseFromString(html, "text/html");
-
-//       // UV
-//       const uvImg = doc.querySelector("#indiceuvimagen img");
-//       if (uvImg?.src)
-//         document.dispatchEvent(
-//           new CustomEvent("uvReady", { detail: { src: uvImg.src } })
-//         );
-
-//       // Aire y Salud
-//       const cont = doc.querySelector("#renglondosdatoscalidadaireahora");
-//       const strong = [...(cont?.querySelectorAll("strong") || [])].find((s) =>
-//         s.textContent.trim().toLowerCase().startsWith("índice aire y salud")
-//       );
-
-//       if (strong) {
-//         const textoIndice = strong.textContent.trim();
-//         const t = textoIndice.toLowerCase();
-//         let color = "#18B2E8";
-//         if (t.includes("aceptable")) color = "#9244D6";
-//         else if (
-//           t.includes("mala") &&
-//           !t.includes("muy") &&
-//           !t.includes("extrema")
-//         )
-//           color = "#f66b58";
-//         else if (t.includes("muy mala") || t.includes("extremadamente mala"))
-//           color = "#FFC043";
-
-//         document.dispatchEvent(
-//           new CustomEvent("aireSaludReady", { detail: { textoIndice, color } })
-//         );
-//       }
-//     })
-//     .catch((err) => console.error("Error obteniendo datos:", err));
-
-//   /* ---------- 4) Reemplazar <img> por SVG inline ---------- */
-//   async function inlineSVG(imgEl) {
-//     if (!imgEl) return;
-//     const url = imgEl.src;
-//     const svgText = await fetch(url).then((r) => r.text());
-//     const wrapper = document.createElement("div");
-//     wrapper.innerHTML = svgText;
-
-//     const svgEl = wrapper.querySelector("svg");
-//     if (!svgEl) return;
-
-//     svgEl.id = imgEl.id;
-//     svgEl.classList.add(...imgEl.classList);
-
-//     // Asegura fill="currentColor" para heredar el color
-//     svgEl.querySelectorAll("path, circle, rect, polygon").forEach((sh) => {
-//       sh.setAttribute("fill", "currentColor");
-//       if (sh.hasAttribute("stroke")) sh.setAttribute("stroke", "currentColor");
-//     });
-
-//     imgEl.replaceWith(svgEl);
-//   }
-
-//   /* ---------- 5) DOMContentLoaded: inline + animaciones ---------- */
-//   document.addEventListener("DOMContentLoaded", async () => {
-//     gsap.registerPlugin(ScrollTrigger);
-
-//     // ① reemplazar imágenes por SVG
-//     await Promise.all([
-//       inlineSVG(document.querySelector("#svgStart")),
-//       inlineSVG(document.querySelector("#svgEnd")),
-//     ]);
-
-//     /* ② aplicar el color que quizá ya se recibió antes de tiempo */
-//     document.documentElement.style.setProperty(
-//       "--color-highlight-start",
-//       currentIconColor
-//     );
-
-//     // ③ animaciones GSAP
-//     gsap.set("#svgStart", { opacity: 0.3, yPercent: -100, xPercent: 600 });
-//     gsap.set("#svgEnd", { opacity: 0.3, yPercent: -100, xPercent: -600 });
-//     gsap.set(".text-large_w", {
-//       opacity: 0,
-//       yPercent: 100,
-//       scale: 0,
-//       transformOrigin: "center top",
-//     });
-
-//     gsap
-//       .timeline({
-//         scrollTrigger: {
-//           trigger: "#container",
-//           start: "top 80%",
-//           end: "top 30%",
-//           scrub: true,
-//         },
-//       })
-//       .to(
-//         "#svgStart",
-//         { opacity: 1, yPercent: -90, xPercent: 90, ease: "none" },
-//         0
-//       )
-//       .to(
-//         "#svgEnd",
-//         { opacity: 1, yPercent: 50, xPercent: -100, ease: "none" },
-//         0
-//       )
-//       .to(
-//         ".text-large_w",
-//         { opacity: 1, yPercent: 0, ease: "none", scale: 1 },
-//         0.4
-//       );
-//   });
-// })();
-// animaciones.js
 (() => {
   let currentIconColor = "#18B2E8";
+  let uvColor = "#18B2E8";
+  let aireColor = "#18B2E8";
+
+  function aplicarGradiente() {
+    const gradiente = `linear-gradient(90deg, ${aireColor}, ${uvColor})`;
+    document.documentElement.style.setProperty('--color-highlight-gradient', gradiente);
+
+    const svgEls = document.querySelectorAll("svg#svgStart, svg#svgEnd");
+    svgEls.forEach(svg => {
+      createGradient(svg, "gradienteINDIX", aireColor, uvColor);
+      svg.querySelectorAll("path, circle, rect, polygon").forEach((sh) => {
+        sh.setAttribute("fill", "url(#gradienteINDIX)");
+      });
+    });
+
+    // console.log("Gradiente aplicado:", gradiente);
+  }
 
   document.addEventListener("uvReady", (e) => {
     const { src, color } = e.detail;
+    uvColor = color;
 
     const mark = document.querySelector(".hx-3");
     if (mark) mark.style.setProperty("--color-highlight-end", color);
+
+    aplicarGradiente();
   });
 
   document.addEventListener("aireSaludReady", (e) => {
     const { textoIndice, color } = e.detail;
+    aireColor = color;
     currentIconColor = color;
 
     document.documentElement.style.setProperty("--color-highlight-start", color);
@@ -203,7 +47,35 @@
       span.style.color = color;
       h2.appendChild(span);
     }
+
+    aplicarGradiente();
   });
+
+  function createGradient(svgEl, id, colorStart, colorEnd) {
+    const defs = svgEl.querySelector("defs") || svgEl.insertBefore(document.createElementNS("http://www.w3.org/2000/svg", "defs"), svgEl.firstChild);
+
+    const old = defs.querySelector(`#${id}`);
+    if (old) old.remove();
+
+    const grad = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
+    grad.setAttribute("id", id);
+    grad.setAttribute("x1", "0%");
+    grad.setAttribute("y1", "0%");
+    grad.setAttribute("x2", "100%");
+    grad.setAttribute("y2", "0%");
+
+    const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop1.setAttribute("offset", "0%");
+    stop1.setAttribute("stop-color", colorStart);
+
+    const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
+    stop2.setAttribute("offset", "100%");
+    stop2.setAttribute("stop-color", colorEnd);
+
+    grad.appendChild(stop1);
+    grad.appendChild(stop2);
+    defs.appendChild(grad);
+  }
 
   async function inlineSVG(imgEl) {
     if (!imgEl) return;
@@ -217,26 +89,22 @@
     svgEl.id = imgEl.id;
     svgEl.classList.add(...imgEl.classList);
 
-    svgEl.querySelectorAll("path, circle, rect, polygon").forEach((sh) => {
-      sh.setAttribute("fill", "currentColor");
-      if (sh.hasAttribute("stroke")) sh.setAttribute("stroke", "currentColor");
-    });
-
     imgEl.replaceWith(svgEl);
+    return svgEl;
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
     gsap.registerPlugin(ScrollTrigger);
 
-    await Promise.all([
+    const [svgStart, svgEnd] = await Promise.all([
       inlineSVG(document.querySelector("#svgStart")),
       inlineSVG(document.querySelector("#svgEnd")),
     ]);
 
-    document.documentElement.style.setProperty(
-      "--color-highlight-start",
-      currentIconColor
-    );
+    document.documentElement.style.setProperty("--color-highlight-start", currentIconColor);
+
+    // Aplica el gradiente inicial también
+    aplicarGradiente();
 
     gsap.set("#svgStart", { opacity: 0.3, yPercent: -100, xPercent: 600 });
     gsap.set("#svgEnd", { opacity: 0.3, yPercent: -100, xPercent: -600 });
@@ -247,17 +115,24 @@
       transformOrigin: "center top",
     });
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: "#container",
-          start: "top 80%",
-          end: "top 30%",
-          scrub: true,
-        },
-      })
-      .to("#svgStart", { opacity: 1, yPercent: -118, xPercent: 83, scale: .28 }, 0)
-      .to("#svgEnd", { opacity: 1, yPercent: 90, xPercent: -90, scale: .28 }, 0)
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#container",
+        start: "top 80%",
+        end: "top 30%",
+        scrub: true,
+      },
+    })
+      .to("#svgStart", { opacity: 1, yPercent: -118, xPercent: 83, scale: 0.28 }, 0)
+      .to("#svgEnd", { opacity: 1, yPercent: 90, xPercent: -90, scale: 0.28 }, 0)
       .to(".text-large_w", { opacity: 1, yPercent: 0, scale: 1 }, 0.4);
   });
+
+  const icono = document.querySelector(".city-icon");
+  if (icono) {
+    icono.classList.add("animated-gradient", "grain-effect");
+    icono.style.webkitBackgroundClip = "text";
+    icono.style.webkitTextFillColor = "transparent";
+  }
+
 })();

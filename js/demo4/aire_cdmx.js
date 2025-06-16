@@ -77,24 +77,19 @@
 
 
 
-
-// datosColores.js
+// aire_cdmx.js
 
 const targetUrl = 'http://aire.cdmx.gob.mx/default.php';
 const proxyUrl = 'https://api.allorigins.win/get?url=';
-console.log("Iniciando fetch a calidad del aire");
 
 fetch(proxyUrl + encodeURIComponent(targetUrl))
-  .then(response => {
-    console.log("Respuesta recibida del proxy");
-    return response.text();
-  })
+  .then(response => response.text())
   .then(html => {
-    console.log("HTML recibido:");
-    console.log(html.slice(0, 500)); // muestra solo el inicio
-
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
+
+    let uvColor = "#18B2E8";
+    let aireColor = "#18B2E8";
 
     // Índice UV
     const uvImg = doc.querySelector("#indiceuvimagen img");
@@ -102,50 +97,47 @@ fetch(proxyUrl + encodeURIComponent(targetUrl))
       const match = uvImg.src.match(/(\d+)\.gif$/);
       const num = match ? +match[1] : null;
 
-      const color = { 0: "#18B2E8", 1: "#18B2E8", 2: "#18B2E8",
+      uvColor = {
+        0: "#18B2E8", 1: "#18B2E8", 2: "#18B2E8",
         3: "#9244D6", 4: "#9244D6", 5: "#9244D6",
         6: "#f66b58", 7: "#f66b58",
         8: "#FFC043", 9: "#FFC043", 10: "#FFC043", 11: "#FFC043",
         12: "#F86230", 13: "#F86230", 14: "#F86230", 15: "#F86230",
       }[num] || "#18B2E8";
 
-      console.log("Disparando evento uvReady");
       document.dispatchEvent(new CustomEvent("uvReady", {
-        detail: { src: uvImg.src, color }
+        detail: { src: uvImg.src, color: uvColor }
       }));
     }
 
     // Calidad del aire
     const contenedor = doc.querySelector("#renglondosdatoscalidadaireahora");
-    if (!contenedor) {
-      console.warn("No se encontró #renglondosdatoscalidadaireahora");
-      return;
+    const strong = contenedor && [...contenedor.querySelectorAll("strong")]
+      .find(el => el.textContent.trim().toLowerCase().startsWith("índice aire y salud"));
+
+    if (strong) {
+      const textoIndice = strong.textContent.trim().toLowerCase();
+
+      if (textoIndice.includes("aceptable")) aireColor = "#9244D6";
+      else if (textoIndice.includes("muy mala") || textoIndice.includes("extremadamente mala"))
+        aireColor = textoIndice.includes("extremadamente") ? "#A51C5B" : "#F86230";
+      else if (textoIndice.includes("mala")) aireColor = "#FFC043";
+
+      // Guardamos color global para evitar perder evento
+      window.aireSaludColor = aireColor;
+
+      document.dispatchEvent(new CustomEvent("aireSaludReady", {
+        detail: { textoIndice, color: aireColor }
+      }));
     }
 
-    const strong = [...contenedor.querySelectorAll("strong")].find(el =>
-      el.textContent.trim().toLowerCase().startsWith("índice aire y salud")
-    );
+    // Aplicar gradiente combinado a CSS raíz (opcional)
+    const gradiente = `linear-gradient(90deg, ${aireColor}, ${uvColor})`;
+    document.documentElement.style.setProperty('--color-highlight-start', gradiente);
 
-    if (!strong) {
-      console.warn("No se encontró strong con texto 'índice aire y salud'");
-      return;
-    }
-
-    const textoIndice = strong.textContent.trim();
-    const textoLower = textoIndice.toLowerCase();
-
-    let color = "#18B2E8";
-    if (textoLower.includes("aceptable")) color = "#9244D6";
-    else if (textoLower.includes("muy mala") || textoLower.includes("extremadamente mala"))
-      color = textoLower.includes("extremadamente") ? "#A51C5B" : "#F86230";
-    else if (textoLower.includes("mala")) color = "#FFC043";
-
-    console.log("Disparando evento aireSaludReady", textoIndice, color);
-
-    document.dispatchEvent(new CustomEvent("aireSaludReady", {
-      detail: { textoIndice, color }
-    }));
+    console.log("Gradiente:", gradiente);
   })
   .catch(err => {
     console.error("Error al obtener datos:", err);
   });
+
