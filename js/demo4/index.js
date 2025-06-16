@@ -10,17 +10,36 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
 
   gsap.registerPlugin(ScrollTrigger, Flip);
 
-  const preloadImages = (sel = "img") =>
-    new Promise((resolve) => {
-      const imgs = [...document.querySelectorAll(sel)];
-      if (!imgs.length) return resolve();
+  const preloadImages = (selector = "img") => {
+    return new Promise((resolve) => {
+      const elements = document.querySelectorAll(selector);
+      const validSrcElements = Array.from(elements).filter((el) => {
+        const src = el.getAttribute("src");
+        return src && !src.includes("undefined");
+      });
+
+      if (validSrcElements.length === 0) {
+        resolve();
+        return;
+      }
+
       let loaded = 0;
-      imgs.forEach((img) => {
-        const proxy = new Image();
-        proxy.src = img.src;
-        proxy.onload = () => ++loaded === imgs.length && resolve();
+
+      validSrcElements.forEach((el) => {
+        const img = new Image();
+        img.onload = () => {
+          loaded++;
+          if (loaded === validSrcElements.length) resolve();
+        };
+        img.onerror = () => {
+          console.warn("Error cargando imagen:", el.src);
+          loaded++;
+          if (loaded === validSrcElements.length) resolve();
+        };
+        img.src = el.src;
       });
     });
+  };
 
   const preloadPowerGrotesk = () => {
     const font = new FontFaceObserver("power_grotesk", {
@@ -46,7 +65,7 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
   const animationEffects = [
     {
       name: "Zoom+Fade",
-      effect: (el, i, total) =>
+      effect: (el) =>
         gsap
           .timeline({
             scrollTrigger: {
@@ -58,10 +77,9 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
           })
           .to(el, { scale: 2, opacity: 0, ease: "power2.inOut" }, 0),
     },
-
     {
       name: "Slide Left",
-      effect: (el, i, total) =>
+      effect: (el) =>
         gsap
           .timeline({
             scrollTrigger: {
@@ -73,10 +91,9 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
           })
           .to(el, { x: "-100vw", opacity: 0, ease: "expo.inOut" }, 0),
     },
-
     {
       name: "Zoom In + Blur",
-      effect: (el, i, total) =>
+      effect: (el) =>
         gsap
           .timeline({
             scrollTrigger: {
@@ -86,16 +103,16 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
               scrub: true,
             },
           })
-          .to(
-            el,
-            { opacity: 0, scale: 1.5, filter: "blur(5px)", ease: "power3.out" },
-            0
-          ),
+          .to(el, {
+            opacity: 0,
+            scale: 1.5,
+            filter: "blur(5px)",
+            ease: "power3.out",
+          }, 0),
     },
-
     {
       name: "Fade + Scale Down",
-      effect: (el, i, total) =>
+      effect: (el) =>
         gsap
           .timeline({
             scrollTrigger: {
@@ -107,10 +124,9 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
           })
           .to(el, { opacity: 0, scale: 0.2, ease: "power1.out" }, 0),
     },
-
     {
       name: "Wobble + Fade",
-      effect: (el, i, total) =>
+      effect: (el) =>
         gsap
           .timeline({
             scrollTrigger: {
@@ -120,16 +136,12 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
               scrub: true,
             },
           })
-          .to(
-            el,
-            {
-              x: () => Math.random() * 30 - 15,
-              rotation: () => Math.random() * 10 - 5,
-              opacity: 0,
-              ease: "none",
-            },
-            0
-          ),
+          .to(el, {
+            x: () => Math.random() * 30 - 15,
+            rotation: () => Math.random() * 10 - 5,
+            opacity: 0,
+            ease: "none",
+          }, 0),
     },
   ];
 
@@ -155,10 +167,11 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
     });
   };
 
+  // Inicialización principal
   (async () => {
     try {
       await Promise.all([
-        preloadImages(".content__img"),
+        preloadImages(".content__img img, .content__img image"), // asegúrate que solo busca imágenes reales
         preloadPowerGrotesk(),
       ]);
       document.body.classList.remove("loading");
