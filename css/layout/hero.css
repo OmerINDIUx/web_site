@@ -1,0 +1,24 @@
+.hero {
+  position: relative;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  overflow: visible;
+}
+
+.content-row {
+  display: flex;
+  align-items: center;
+  margin-left: -100px; /* mejor que gap negativo */
+}
+
+.city-icon {
+  width: 100px;
+  height: 100px;
+  display: block;
+  color: var(--color-highlight-start, blue); /* valor por defecto */
+  transition: color 0.3s ease;
+}

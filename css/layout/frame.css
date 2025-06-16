@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  color: var(--color-text); /* text color */
+  background-color: var(--color-bg);
+  font-family: "power_grotesk_bold", sans-serif;
+  font-variation-settings: "slnt" 0, "wdth" 150, "wght" 500, "INKT" 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+p {
+  font-family: "B612", sans-serif;
+  font-weight: 400;
+}
+
+span {
+  font-family: "power_grotesk_light";
+  font-variation-settings: "slnt" 0, "wdth" 100, "wght" 400, "INKT" 400;
+}
+
+
+.frame {
+  padding: var(--page-padding);
+  position: relative;
+  display: grid;
+  z-index: 1000;
+  width: 100%;
+  gap: 1rem 2rem;
+  justify-items: start;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.frame--header {
+  height: 100%;
+  z-index: 3000;
+  background-size: auto 80%;
+  background-position: 120% 50%;
+  background-repeat: no-repeat;
+  grid-template-areas: "title" "heading";
+}
+
+.frame__heading {
+  grid-area: heading;
+  align-self: center;
+  justify-self: start;
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+}
+
+.frame__heading h2 {
+  margin: 0;
+  line-height: 0.9;
+  text-transform: uppercase;
+  margin-left: -0.065em;
+  font-size: clamp(2.5rem, 12vw, 7rem);
+  letter-spacing: 0.105em;
+  font-variation-settings: "slnt" 0, "wdth" 400, "wght" 900, "INKT" 400;
+}
