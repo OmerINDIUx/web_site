@@ -13,13 +13,13 @@
   background: transparent; /* o blanco si deseas */
   padding: 1rem;
   box-sizing: border-box;
+padding: 0% 4% 12%;
 }
 
 /* Espacio superior vacío */
-.div-vacio {
-  flex-grow: 1; /* toma todo el espacio disponible arriba */
-}
-
+/* .div-vacio {
+  flex-grow: 1;
+} */
 /* Reloj abajo */
 .time-ctrl {
   position: relative;
