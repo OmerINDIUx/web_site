@@ -57,7 +57,7 @@ span {
   line-height: 0.9;
   text-transform: uppercase;
   margin-left: -0.065em;
-  font-size: clamp(2.5rem, 12vw, 7rem);
+  font-size: clamp(2.2rem, 9vw, 5rem);
   letter-spacing: 0.105em;
   font-variation-settings: "slnt" 0, "wdth" 400, "wght" 900, "INKT" 400;
 }
