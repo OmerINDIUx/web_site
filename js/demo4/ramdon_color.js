@@ -79,14 +79,14 @@ fetch(url)
 
     /* temp actual */
     const tempNow = data.current.apparent_temperature;
-    console.log("temperatura actual:", tempNow);
+    // console.log("temperatura actual:", tempNow);
     const temp2h = data.hourly.temperature_2m[8];  
-    console.log("temperatura +2 hrs:", temp2h);
+    // console.log("temperatura +2 hrs:", temp2h);
 
     /* Paleta y aplicación ----------------------------------------------*/
     const palette = paletteForTemps(tempNow, temp2h);
     applyColors(palette);
-    console.log(`Ahora: ${tempNow} °C | +8 h: ${temp2h} °C →`, palette);
+    // console.log(`Ahora: ${tempNow} °C | +8 h: ${temp2h} °C →`, palette);
   })
   .catch(err => {
     console.error("Error al obtener clima. Paleta por defecto:", err);

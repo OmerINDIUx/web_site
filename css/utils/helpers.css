@@ -154,9 +154,7 @@
   white-space: nowrap;
 }
 
-.hx-3 {
-  --color-highlight-end: var(--color-highlight-end);
-}
+
 .hx-1 {
   background: none;
   color: var(--color-highlight-start-map, #e7e5d9);
