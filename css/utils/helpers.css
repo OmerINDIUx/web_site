@@ -133,6 +133,18 @@
   max-width: 900px;
   margin: 0 0 0.85em 0;
   line-height: 1.2;
+    text-align: center;
+
+}
+
+
+.text-large_M {
+  color: #fff;
+  font-size: clamp(1rem, 1.3rem, 2rem);
+  max-width: 900px;
+  margin: 0 0 0.85em 0;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .text-meta {
@@ -154,13 +166,13 @@
   white-space: nowrap;
 }
 
-
 .hx-1 {
   background: none;
   color: var(--color-highlight-start-map, #e7e5d9);
   display: inline-block;
   position: relative;
   white-space: nowrap;}
+
 .hx-2 {
   --color-highlight-end: var(--color-highlight-start-map, #e7e5d9);
   }
