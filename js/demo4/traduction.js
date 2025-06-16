@@ -1,7 +1,9 @@
+let currentLang = 'en'; // idioma por defecto al iniciar
+
 function translatePage(lang = 'en') {
   const elements = document.querySelectorAll('[data-i18n]');
 
-  // 1. Fade out con opacidad y ligera escala para salida
+  // Fade out
   gsap.to(elements, {
     opacity: 0,
     scale: 0.95,
@@ -9,7 +11,6 @@ function translatePage(lang = 'en') {
     stagger: 0.02,
     ease: "power1.in",
     onComplete: () => {
-      // 2. Cargar traducciones
       fetch(`./json/${lang}.json`)
         .then(res => res.json())
         .then(translations => {
@@ -26,7 +27,7 @@ function translatePage(lang = 'en') {
             }
           });
 
-          // 3. Entrada con rebote sutil
+          // Fade in
           gsap.fromTo(elements,
             { opacity: 0, scale: 0.95 },
             {
@@ -37,26 +38,26 @@ function translatePage(lang = 'en') {
               ease: 'back.out(1.4)'
             }
           );
+
+          // Actualiza el idioma actual
+          currentLang = lang;
         })
         .catch(err => console.error("Error cargando idioma:", err));
     }
   });
 }
 
-
-// Cambio de idioma con animación del botón también
+// Cambio de idioma con animación del botón
 document.getElementById('lang-toggle')?.addEventListener('click', () => {
   const btn = document.getElementById('lang-toggle');
-  const current = btn.textContent.trim();
-  const nextLang = current === 'ES' ? 'es' : 'en';
+  const nextLang = currentLang === 'en' ? 'es' : 'en';
 
-  // Animación del botón al hacer toggle
   gsap.to(btn, {
     scale: 0.8,
     duration: 0.15,
     onComplete: () => {
-      btn.textContent = nextLang.toUpperCase();
-      translatePage(nextLang.toLowerCase());
+      btn.textContent = nextLang.toUpperCase(); // Mostrar a qué idioma va a cambiar
+      translatePage(nextLang); // Traducir al nuevo idioma
 
       gsap.to(btn, {
         scale: 1,
@@ -67,7 +68,7 @@ document.getElementById('lang-toggle')?.addEventListener('click', () => {
   });
 });
 
-// Carga inicial con animación suave
+// Animación inicial y carga en inglés
 window.addEventListener('DOMContentLoaded', () => {
   gsap.from('[data-i18n]', {
     opacity: 0,
@@ -77,5 +78,5 @@ window.addEventListener('DOMContentLoaded', () => {
     ease: "power2.out"
   });
 
-  translatePage('en');
+  translatePage(currentLang); // usa 'en' por defecto
 });
