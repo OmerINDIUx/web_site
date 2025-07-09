@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   gsap.set(grupoGeneral, {
     xPercent: 3,
     yPercent: 3,
-    scale: 0.43,
-    transformOrigin: "left top",
+    scale: 0.6,
+    transformOrigin: "center",
   });
 
   const tl = gsap.timeline({
