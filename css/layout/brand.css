@@ -1,0 +1,10 @@
+.brand {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  height: 100vh;           /* Ocupa toda la altura de la pantalla */
+  width: 100vw;            /* Ocupa todo el ancho de la pantalla */
+  overflow: hidden;        /* Oculta contenido que se salga */
+  position: relative;      /* Permite posicionar elementos hijos */
+  background-color: #000;  /* Puedes cambiar el fondo si quieres */
+}
