@@ -62,10 +62,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       { xPercent: -115, yPercent: -270, opacity: 0, scale: 0 },
       0.1
     )
-    .to(indi, { xPercent: 50, yPercent: -18, scale: 0.4 }, 0.3)
-    .to(logoX, { xPercent: -155, yPercent: -190, scale: 0.4 }, 0.5)
-    .to(cornerTL, { xPercent: 73, yPercent: -185, scale: 0.35 }, 0.7)
-    .to(cornerBR, { xPercent: -155, yPercent: -18, scale: 0.35 }, 0.9)
+    .to(indi, { xPercent: 50, yPercent: -18, scale: 0.4 }, 1)
+    .to(logoX, { xPercent: -155, yPercent: -190, scale: 0.4 }, 1)
+    .to(cornerTL, { xPercent: 73, yPercent: -185, scale: 0.35 }, 1)
+    .to(cornerBR, { xPercent: -155, yPercent: -18, scale: 0.35 }, 1)
     .to(grupoGeneral, { xPercent: 0, yPercent: 1, scale: 1 }, 1)
     .call(
       () => {

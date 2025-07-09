@@ -143,19 +143,167 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
             ease: "none",
           }, 0),
     },
+    
+
+
+
+{
+  name: "Rotate + Zoom + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      rotation: 360,
+      scale: 2,
+      opacity: 0, // fade
+      ease: "power2.inOut",
+    }, 0),
+},
+{
+  name: "Slide Up + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      y: "-100vh",
+      opacity: 0, // fade
+      ease: "sine.out",
+    }, 0),
+},
+
+{
+  name: "Twist + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      rotation: 45,
+      scale: 0.6,
+      opacity: 0, // fade
+      ease: "power1.inOut",
+    }, 0),
+},
+{
+  name: "Slide Right + Blur + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      x: "100vw",
+      filter: "blur(8px)",
+      opacity: 0, // fade
+      ease: "expo.inOut",
+    }, 0),
+},
+{
+  name: "Drop Down + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      y: "100vh",
+      opacity: 0, // fade
+      ease: "circ.out",
+    }, 0),
+},
+{
+  name: "Elastic Pulse + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      scale: 1.4,
+      opacity: 0, // fade
+      ease: "elastic.in(1, 0.3)",
+    }, 0),
+},
+{
+  name: "Zoom Rotate + Blur + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      scale: 3,
+      rotation: 90,
+      filter: "blur(6px)",
+      opacity: 0, // fade
+      ease: "power4.in",
+    }, 0),
+},
+{
+  name: "Horizontal Shrink + Fade",
+  effect: (el) =>
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+      },
+    }).to(el, {
+      scaleX: 0,
+      opacity: 0, // fade
+      ease: "expo.in",
+    }, 0),
+}
+
+
+
+
   ];
 
   const initScrollAnimations = () => {
-    const elements = [...document.querySelectorAll(".content--sticky")];
-    const total = elements.length;
+  const elements = [...document.querySelectorAll(".content--sticky")];
+  const total = elements.length;
 
-    elements.forEach((el, i) => {
-      const effectObj =
-        animationEffects[Math.floor(Math.random() * animationEffects.length)];
-      console.log(`🌀 Elemento ${i + 1}: efecto aplicado -> ${effectObj.name}`);
-      effectObj.effect(el, i, total);
-    });
-  };
+  // Barajar efectos de forma aleatoria
+  const shuffledEffects = animationEffects
+    .slice()
+    .sort(() => Math.random() - 0.5);
+
+  elements.forEach((el, i) => {
+    // Si hay más elementos que efectos, se vuelve a barajar y continúa
+    const effectObj =
+      shuffledEffects[i % shuffledEffects.length]; // asigna sin repetir hasta agotar efectos
+    console.log(`🌀 Elemento ${i + 1}: efecto aplicado -> ${effectObj.name}`);
+    effectObj.effect(el, i, total);
+  });
+};
 
   const initHighlight = () => {
     document.querySelectorAll(".hx").forEach((el) => {
