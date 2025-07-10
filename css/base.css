@@ -6,6 +6,8 @@
 /* LAYOUT */
 @import url("./layout/frame.css");
 @import url("./layout/hero.css");
+@import url("./layout/brand.css");
+
 @import url("./layout/layout-columns.css");
 @import url("./layout/footer.css");
 
