@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     .to(logoX, { xPercent: -155, yPercent: -190, scale: 0.4 }, 1)
     .to(cornerTL, { xPercent: 73, yPercent: -185, scale: 0.35 }, 1)
     .to(cornerBR, { xPercent: -155, yPercent: -18, scale: 0.35 }, 1)
-    .to(grupoGeneral, { xPercent: 0, yPercent: 1, scale: 1 }, 1)
+    .to(grupoGeneral, { xPercent: -65, yPercent: 1, scale: 1 }, 1)
     .call(
       () => {
         gsap.set("#site-header", { pointerEvents: "auto" });
@@ -114,42 +114,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     grad.appendChild(stop2);
     defs.appendChild(grad);
   }
+setFill("#EFEFEF");
+laboratorio.style.fill = "#EFEFEF";
 
-  ScrollTrigger.create({
-    trigger: ".color_brand",
-    start: "top center",
-    end: "bottom center",
-    onEnter: () => setFill("#111111"),
-    onLeaveBack: () => setFill("#EFEFEF"),
-  });
 
-  ScrollTrigger.create({
-    trigger: ".color_brand2",
-    start: "top center",
-    end: "bottom center",
-    onEnter: () => setFill("#EFEFEF"),
-    onLeaveBack: () => setFill("#EFEFEF"),
-  });
-
-  ScrollTrigger.create({
-    start: "top center",
-    end: "bottom center",
-    onEnter: () => setFill("#EFEFEF"),
-    onLeaveBack: () => setFill("#EFEFEF"),
-  });
-
-  ScrollTrigger.create({
-    start: "top center",
-    end: "bottom center",
-    onEnter: () => {
-      laboratorio.style.fill = "#EFEFEF";
-    },
-    onLeaveBack: () => {
-      laboratorio.style.fill = "#EFEFEF";
-    },
-  });
-
-  ScrollTrigger.refresh();
 
   // ✅ Aplica directamente el gradiente desde JS como fondo o fill si quieres
   let aireReady = false;
