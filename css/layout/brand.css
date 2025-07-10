@@ -6,5 +6,4 @@
   width: 100vw;            /* Ocupa todo el ancho de la pantalla */
   overflow: hidden;        /* Oculta contenido que se salga */
   position: relative;      /* Permite posicionar elementos hijos */
-  background-color: #000;  /* Puedes cambiar el fondo si quieres */
 }

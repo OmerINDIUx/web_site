@@ -2,7 +2,6 @@
   font-size: 16px;
   --page-padding: 1.5rem;
   --color-text: #fff;
-  --color-bg: #1c1819;
   --color-link: rgba(255, 0, 0, 0.6);
   --color-link-hover: #fff;
   --color-bg-1: #2f251e;
@@ -16,7 +15,7 @@
 
 .demo-4 {
   --color-text: #0c0c0c;
-  --color-bg: #0c0c0c;
-  --color-link: rgba(0, 0, 0, 0.6);
+  --color-bg: #000000;
+  --color-link: rgba(14, 14, 14, 0.6);
   --color-link-hover: #000;
 }
