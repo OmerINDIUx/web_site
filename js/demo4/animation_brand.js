@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tl = gsap.timeline({
     defaults: { ease: "power2.out" },
     scrollTrigger: {
-      trigger: "#brand",
+      trigger: "#map",
       start: "+=1%",
       end: "+=60%",
       scrub: true,
@@ -56,12 +56,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   });
 
+
+
+
+
   tl.to("#svg-container", { width: "25vw", height: "auto" }, 0)
-    .to(
-      laboratorio,
-      { xPercent: -115, yPercent: -270, opacity: 0, scale: 0 },
-      0.1
-    )
+    .to(laboratorio,{ xPercent: -115, yPercent: -270, opacity: 0, scale: 0 }, 1)
     .to(indi, { xPercent: 50, yPercent: -18, scale: 0.4 }, 1)
     .to(logoX, { xPercent: -155, yPercent: -190, scale: 0.4 }, 1)
     .to(cornerTL, { xPercent: 73, yPercent: -185, scale: 0.35 }, 1)
