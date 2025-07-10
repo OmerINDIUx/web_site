@@ -31,11 +31,11 @@
 
 </head>
 <main>
-    <div class="frame frame--header">
-      <div class="frame__heading">
-      </div>
+  <div class="frame frame--header">
+    <div class="frame__heading">
     </div>
-  </main>
+  </div>
+</main>
 
 <body class="loading demo-4">
   <!-- Loader -->
@@ -59,7 +59,7 @@
 
     <nav class="menu-right">
 
-                      <script src="js/demo4/aire_cdmx.js"></script>
+      <script src="js/demo4/aire_cdmx.js"></script>
 
 
 
@@ -73,57 +73,66 @@
   </header>
 
 
-<!-- Sección brand -->  
-<section class="brand">
-<script src="js/demo4/animation_brand.js"></script>
-</section>
+  <!-- Sección brand -->
+  <section class="brand">
+
+
+    <script src="js/demo4/animation_brand.js"></script>
+  </section>
 
 
 
 
 
 <section class="map">
-
- <script src="js/demo4/scroll_animation.js"></script>
   <div id="brand" class="layout">
-    <script src="js/demo4/animation_hero.js"></script>
-    
-    
-    
+    <!-- COLUMNA IZQUIERDA -->
     <div class="left-column">
+      <!-- Texto e íconos -->
+      <div class="content-row">
+        <img id="svgStart" class="city-icon" src="img/bran-icon-01.svg" data-i18n="icon_start_alt" alt="">
+        <div class="content content--highlight content--intro">
+          <p class="text-large_w">
+            <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
+            <span data-i18n="hero_intro_text"></span>
+          </p>
+        </div>
+        <img id="svgEnd" class="city-icon" src="img/bran-icon-02.svg" alt="" data-i18n="icon_end_alt">
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA -->
+    <div class="right-column">
+      <!-- MAPA -->
+      <div id="svg-container1" class="svg-container"></div>
+      <div id="svg-container2" class="svg-container"></div>
+
+      <!-- Hora al final -->
       <div id="prueba" class="time-ctrl">
         <div class="corner-icon top-left">
           <img id="svg1" class="icon1" src="img/bran-icon-01.svg" alt="Icono inicio">
         </div>
+
         <div class="center-controls">
           <p class="text-large_M">
-
-
             <mark class="hx-1 hx-2" data-i18n="CDMX Traffic"></mark>
           </p>
           <span id="hourLabel" class="hour">--:--</span>
           <input id="hourSlider" type="range" min="0" max="23" step="1">
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
         <div class="corner-icon bottom-right">
           <img id="svg2" class="icon1" src="img/bran-icon-02.svg" alt="Icono final">
         </div>
       </div>
     </div>
+  </div>
 
 
-
-
-    <div class="right-column">
-      <div id="svg-container1" class="svg-container"></div>
-      <div id="svg-container2" class="svg-container"></div>
-    </div>
-  </div> 
-
-
-
+  <script src="js/demo4/scroll_animation.js"></script>
+  <script src="js/demo4/animation_hero.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="js/demo4/script_map.js"></script>
-
   </section>
 
 
@@ -131,7 +140,7 @@
 
 
   <!-- Hero section -->
-  <section id="container" class="hero">
+  <!-- <section id="container" class="hero">
     <div class="content-row">
       <img id="svgStart" class="city-icon" src="img/bran-icon-01.svg" data-i18n="icon_start_alt" alt="">
       <div class="content content--highlight content--intro">
@@ -142,7 +151,7 @@
       </div>
       <img id="svgEnd" class="city-icon" src="img/bran-icon-02.svg" alt="" data-i18n="icon_end_alt">
     </div>
-  </section>
+  </section> -->
   <script type="module" src="js/demo4/traduction.js"></script>
   <script src="js/demo4/ramdon_color.js"></script>
 
@@ -151,7 +160,7 @@
 
   <div class="wrap">
     <div class=" content content--sticky content--grid bg-1">
-      <div  class ="color_brand content__img content__img--large content__img--left" id="circle_arrow"></div>
+      <div class="color_brand content__img content__img--large content__img--left" id="circle_arrow"></div>
       <script src="js/demo4/1_animation.js"></script>
       <h2 class="content__title titlle-1">
         <span data-i18n="Technology as a Force for"></span>
@@ -219,12 +228,13 @@
   <div class="content content--highlight content--outro">
     <h2 class="color_brand2 content__title">
       <span data-i18n="The Call"></span>
-      <span class="content__title_h2" data-i18n="to Action"></span> </h2>
+      <span class="content__title_h2" data-i18n="to Action"></span>
+    </h2>
     <h2 class="content__title">
       <span data-i18n="The Call"></span>
       <span class="content__title_h2" data-i18n="to Action"></span>
     </h2>
-   
+
     <p class="text-large_w" data-i18n="text of the to Action">
     </p>
     <br><br>
