@@ -1,7 +1,7 @@
 @media screen and (min-width: 63em) {
-  body {
+  /* body {
     --page-padding: 2rem 3rem;
-  }
+  } */
   .frame--header {
     height: 100vh;
     grid-template-columns: auto 1fr;
