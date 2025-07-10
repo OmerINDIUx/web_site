@@ -98,7 +98,7 @@
       const data = await fetch(this.svgFile).then((r) => r.text());
       const doc = new DOMParser().parseFromString(data, "image/svg+xml");
       this.svg = doc.querySelector("svg");
-      this.svg.setAttribute("viewBox", "0 0 4000 4000");
+      this.svg.setAttribute("viewBox", "0 0 3500 3500");
       this.svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
       /* Perspectiva 3D para un efecto de profundidad */
