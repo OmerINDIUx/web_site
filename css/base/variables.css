@@ -1,11 +1,9 @@
 :root {
   font-size: 16px;
   --page-padding: 1.5rem;
-  --color-text: #fff;
+  --color-text: #EFEFEF;
   --color-link: rgba(255, 0, 0, 0.6);
-  --color-link-hover: #fff;
-  --color-bg-1: #2f251e;
-  --color-bg-2: #43392f;
+  --color-link-hover: #EFEFEF;
   --color-bg-3: var(--color-bg-1);
   --color-bg-4: var(--color-bg-2);
   --color-bg-5: var(--color-bg-1);
@@ -18,4 +16,6 @@
   --color-bg: #000000;
   --color-link: rgba(14, 14, 14, 0.6);
   --color-link-hover: #000;
+  --color-white-brand: #EFEFEF;
+  
 }

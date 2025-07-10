@@ -29,21 +29,33 @@
   background: transparent; 
   box-sizing: border-box;
 }
+
+
+
 .center-controls {
+  position: absolute;
+  bottom: 15%;
+  right: 5%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end; /* Alinea los hijos dentro de la columna */
   z-index: 3002;
+  padding: 2rem; /* opcional, para separarlo un poco del borde */
+
+  background-color: var(--color-white-brand,  #EFEFEF);
+  border-top-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
 
 
   
 
 .hour {
   font-family: "power_grotesk_bold", sans-serif;
-  font-size: 5rem;
+  font-size: 4rem;
   margin-top: -0.6rem;
   margin-bottom: 0.5rem;
-  color: #e7e5d9;
+  color: var(--color-text, #0c0c0c);
 }
 
 #prueba {
@@ -65,7 +77,7 @@
 #hourSlider {
   width: 300px;
   height: 6px;
-  background: #ccc;
+  background: var(--color-text, #0c0c0c);
   border-radius: 3px;
   outline: none;
   appearance: none;
@@ -78,7 +90,7 @@
   appearance: none;
   width: 16px;
   height: 16px;
-  background: #e7e5d9;
+  background: var(--color-text, #0c0c0c);
   border-radius: 50%;
   cursor: pointer;
   margin-top: -5px;
@@ -123,7 +135,7 @@
 }
 
   
-}
+
 /* Reloj abajo */
 .time-ctrl {
   height: auto;
@@ -132,7 +144,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #e7e5d9;
+  color: var(--color-text, #0c0c0c);
   position: relative;
 }
 

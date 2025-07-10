@@ -6,13 +6,6 @@
   
 }
 
-.hour {
-  font-family: "power_grotesk_bold", sans-serif;
-  font-size: 5rem;
-  margin-top: -0.6rem;
-  margin-bottom: 0.5rem;
-  color: #e7e5d9;
-}
 
 #prueba {
   z-index: 810;
@@ -29,63 +22,3 @@
   color: var(--color-highlight-start-map, #e7e5d9);
 }
 
-/* Slider base */
-#hourSlider {
-  width: 300px;
-  height: 6px;
-  background: #ccc;
-  border-radius: 3px;
-  outline: none;
-  appearance: none;
-  margin: 0;
-  position: relative;
-}
-
-/* WebKit (Chrome, Safari) */
-#hourSlider::-webkit-slider-thumb {
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #e7e5d9;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: -5px;
-}
-
-#hourSlider::-webkit-slider-runnable-track {
-  background: #d9e7e50f;
-  height: 6px;
-  border-radius: 3px;
-}
-
-/* Firefox */
-#hourSlider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: #e7e5d950;
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
-}
-
-#hourSlider::-moz-range-track {
-  background: #d9e7e50f;
-  height: 6px;
-  border-radius: 3px;
-}
-
-/* Edge */
-#hourSlider::-ms-thumb {
-  width: 16px;
-  height: 16px;
-  background: #43d7cd;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-#hourSlider::-ms-track {
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-  height: 6px;
-}
