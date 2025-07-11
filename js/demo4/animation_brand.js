@@ -2,34 +2,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   const svgText = await fetch("img/Brand_INDIx_animate.svg").then((r) =>
     r.text()
   );
-
   const container = document.getElementById("svg-container");
   if (!container) {
     console.error("No se encontró #svg-container");
     return;
   }
-
   container.innerHTML = svgText;
-
   const laboratorio = container.querySelector("#laboratorio");
   const indi = container.querySelector("#indi");
   const logoX = container.querySelector("#logoX");
   const cornerTL = container.querySelector("#cornerTL");
   const cornerBR = container.querySelector("#cornerBR");
   const grupoGeneral = container.querySelector("#grupoGeneral");
-
   if (
     ![laboratorio, indi, logoX, cornerTL, cornerBR, grupoGeneral].every(Boolean)
   ) {
     console.error("Faltan nodos dentro del SVG");
     return;
   }
-
   cornerTL.setAttribute("clip-path", "url(#liquidClipTL)");
   cornerBR.setAttribute("clip-path", "url(#liquidClipBR)");
-
   gsap.registerPlugin(ScrollTrigger);
-
   gsap.set([laboratorio, indi, logoX, cornerTL, cornerBR], {
     xPercent: 0,
     yPercent: 0,
@@ -37,45 +30,65 @@ document.addEventListener("DOMContentLoaded", async () => {
     opacity: 1,
     transformOrigin: "center",
   });
-
   gsap.set(grupoGeneral, {
     xPercent: 3,
     yPercent: 3,
     scale: 0.6,
     transformOrigin: "center",
   });
-
   const tl = gsap.timeline({
-    defaults: { ease: "power2.out" },
-    scrollTrigger: {
-      trigger: "#map",
-      start: "+=1%",
-      end: "+=60%",
-      scrub: true,
-      pinSpacing: true,
-    },
-  });
+  defaults: { ease: "power2.inOut" }, // más suave que power2.out
+  scrollTrigger: {
+    trigger: "#map",
+    start: "-=300%",
+    end: "+=300%",
+    scrub: 0.8, // suaviza el seguimiento
+    pinSpacing: true,
+  },
+});
 
+tl.to("#svg-container", { width: "25vw", height: "auto", duration: 1 }, 0)
+  .to(laboratorio, {
+    xPercent: -190,
+    yPercent: -270,
+    opacity: 0,
+    scale: 0,
+    duration: 1.2,
+  }, 0.2)
+  .to(indi, {
+    xPercent: -25,
+    yPercent: -18,
+    scale: 0.4,
+    duration: 1,
+  }, 0.3)
+  .to(logoX, {
+    xPercent: -230,
+    yPercent: -190,
+    scale: 0.4,
+    duration: 1,
+  }, 0.3)
+  .to(cornerTL, {
+    xPercent: -25,
+    yPercent: -185,
+    scale: 0.35,
+    duration: 1,
+  }, 0.4)
+  .to(cornerBR, {
+    xPercent: -230,
+    yPercent: -18,
+    scale: 0.35,
+    duration: 1,
+  }, 0.4)
+  .to(grupoGeneral, {
+    xPercent: 0,
+    yPercent: 1,
+    scale: 1,
+    duration: 1.2,
+  }, 0.5)
+  .call(() => {
+    gsap.set("#site-header", { pointerEvents: "auto" });
+  }, null, 0.9);
 
-
-
-
-  tl.to("#svg-container", { width: "25vw", height: "auto" }, 0)
-    .to(laboratorio,{ xPercent: -115, yPercent: -270, opacity: 0, scale: 0 }, 1)
-    .to(indi, { xPercent: 50, yPercent: -18, scale: 0.4 }, 1)
-    .to(logoX, { xPercent: -155, yPercent: -190, scale: 0.4 }, 1)
-    .to(cornerTL, { xPercent: 73, yPercent: -185, scale: 0.35 }, 1)
-    .to(cornerBR, { xPercent: -155, yPercent: -18, scale: 0.35 }, 1)
-    .to(grupoGeneral, { xPercent: -65, yPercent: 1, scale: 1 }, 1)
-    .call(
-      () => {
-        gsap.set("#site-header", { pointerEvents: "auto" });
-      },
-      null,
-      1.1
-    );
-
-  gsap.set(".menu-right", { opacity: 1, pointerEvents: "auto" });
 
   const setFill = (color) => {
     indi.style.fill = color;
