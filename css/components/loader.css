@@ -1,94 +1,96 @@
-.loading {
-  height: 100vh;
-  margin: 0;
-  font-family: "Arial", sans-serif;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
+/* Fondo general */
 #loader-overlay {
   position: fixed;
-  z-index: 1000;
-  background: #0c0c0c;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  background-color: #111;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
-#loader-overlay.hidden {
+/* Esquinas con íconos */
+.corner-icon {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  z-index: 2;
   opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  display: none;
+  transform: scale(0.5);
 }
 
-.loader {
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Caja de carga */
+.loader-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
   text-align: center;
-  padding: 2rem 3rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .text_load {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-bottom: 1rem;
   color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
 }
 
+/* Texto animado */
+#text_parpadeando p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  animation: blinkText 1.2s ease-in-out infinite;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes blinkText {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Barra de carga opcional */
 #LoadSliderContainer {
-  width: 10%;
-  height: 2px;
-  background-color: #b7b7b7;
+  width: 40%;
+  height: 4px;
+  background-color: #2c2c2c;
+  margin-top: 20px;
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 #LoadSlider {
   height: 100%;
   width: 0%;
-  background-color: #ffffff;
-  transition: width 0.1s linear;
-}
-
-#loader-overlay{
-  position:fixed;inset:0;z-index:9999;
-  display:flex;align-items:center;justify-content:center;
-  background:#0c0c0c;color:#fff;font-family:sans-serif;
+  background: linear-gradient(90deg, #00ffcc, #0077ff);
+  transition: width 0.1s ease-in-out;
 }
 
 
 
-/* Parpadeo del texto */
-#loading {
-  animation: blinkText 1s step-start infinite;
-  font-weight: bold;
-}
 
-/* Animación de puntos */
-@keyframes dots {
-  0% { content: "Loading"; }
-  25% { content: "Loading."; }
-  50% { content: "Loading.."; }
-  75% { content: "Loading..."; }
-  100% { content: "Loading"; }
-}
-
-/* Para mostrar los puntos usando ::after */
-#loading::after {
-  content: "Loading";
-  animation: dots 1.2s steps(4, end) infinite;
-}
-
-@keyframes blinkText {
-  50% {
-    opacity: 0.4;
-  }
-}
 /* Íconos en las esquinas */
 .corner-icon1 {
   position: absolute;
