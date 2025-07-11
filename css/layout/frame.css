@@ -9,6 +9,7 @@ body {
   overflow-x: hidden;
 }
 
+
 .layout {
   display: flex;
   min-height: 100vh;
