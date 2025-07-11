@@ -25,12 +25,7 @@ body {
 }
 
 /* Contenido que se adapta */
-.content {
-  flex: 1;
-  padding: 2rem;
-  overflow-x: hidden;
-  position: relative;
-}
+
 
 
 

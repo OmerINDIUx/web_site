@@ -1,0 +1,89 @@
+/* ------------------ ESTILOS GENERALES ------------------ */
+.bg-1, .bg-2, .bg-3, .bg-4, .bg-5, .bg-6, .bg-7 {
+  background-color: var(--color-white-brand);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.content--sticky {
+  width: 94vw;
+  height: 98vh;
+  position: sticky;
+  top: 0;
+  left: 5.3%;
+  margin: 2% auto 0;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* ------------------ GRID ESTRUCTURA ------------------ */
+.content__grid {
+  display: grid;
+  grid-template-columns: 38.5% 61.5%;
+  gap: 2vh 5vw;
+  align-items: center;
+  height: 100%;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
+/* ------------------ CONTENIDO TEXTUAL ------------------ */
+.content__textual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.2rem;
+  display: grid;
+  grid-template-rows: 38% 62%;
+  height: 100%;
+}
+
+.content__title {
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: clamp(2rem, 3vw, 4rem);
+  font-weight: normal;
+  margin: 0;
+  padding-left: 1.2rem;
+  align-self: end; /* Se alinea al fondo de su fila (38%) */
+  font-variation-settings: "slnt" 0, "wdth" 400, "wght" 900, "INKT" 400;
+}
+
+.content__title_h2 {
+  line-height: 0.9;
+  font-size: clamp(2rem, 3vw, 4rem);
+  margin: 0;
+  letter-spacing: 0.105em;
+}
+
+.content__text {
+  margin: 0;
+  max-width: 100%;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 1.2rem;
+  padding-left: 1.2rem;
+  padding-top: 9%;
+}
+
+/* ------------------ CONTENIDO VISUAL ------------------ */
+.content__img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content__img {
+  width: 80%;
+  max-width: 80%;
+  height: auto;
+}
+
+.content__img--large {
+  width: 80%;
+}
