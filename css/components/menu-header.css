@@ -24,7 +24,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 6001;
+  z-index: 1001;
   pointer-events: all;
   background-color: #ffffff;
 }
@@ -45,12 +45,17 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(77, 77, 77, 0.301); /* Fondo translúcido */
+  backdrop-filter: blur(12px);          /* Desenfoque para el glassmorphismo */
+  -webkit-backdrop-filter: blur(12px);  /* Compatibilidad con Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Sutil borde brillante */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+  border-radius: 16px; /* Opcional si usas el menú dentro de un contenedor más pequeño */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
