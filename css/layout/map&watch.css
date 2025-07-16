@@ -47,10 +47,11 @@
   align-items: flex-end; /* Alinea los hijos dentro de la columna */
   z-index: 3002;
   padding: 2rem; /* opcional, para separarlo un poco del borde */
-
+  align-items: center;
   background-color: var(--color-white-brand,  #EFEFEF);
   border-top-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
+  z-index: 301;
 }
 
 

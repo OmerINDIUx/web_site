@@ -216,22 +216,6 @@ import { HighlightEffect as HighlightEffect3 } from "./effect-3/highlightEffect.
     }, 0),
 },
 {
-  name: "Drop Down + Fade",
-  effect: (el) =>
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: "top top",
-        end: "+=100%",
-        scrub: true,
-      },
-    }).to(el, {
-      y: "100vh",
-      opacity: 0, // fade
-      ease: "circ.out",
-    }, 0),
-},
-{
   name: "Elastic Pulse + Fade",
   effect: (el) =>
     gsap.timeline({

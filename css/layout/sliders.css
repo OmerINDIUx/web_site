@@ -87,3 +87,15 @@
 .content__img--large {
   width: 80%;
 }
+
+
+.content__title_center {
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: clamp(2rem, 3vw, 4rem);
+  font-weight: normal;
+  margin-bottom: 2rem;
+  padding-left: 1.2rem;
+  align-self: center;
+  font-variation-settings: "slnt" 0, "wdth" 400, "wght" 900, "INKT" 400;
+}
