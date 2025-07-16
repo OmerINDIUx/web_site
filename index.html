@@ -41,6 +41,10 @@
     </nav>
   </header>
 </div>
+
+
+
+
 <body class="loading demo-4">
   <!-- Loader -->
   <div id="loader-overlay">
@@ -68,11 +72,34 @@
       </div>
     </div>
   </main>
+
+  
     <!-- Sección brand -->
     <section class="brand">
+  
       <script src="js/demo4/animation_brand.js"></script>
+          <div class="scroll-animation">
+          <img src="img/Scroll Down.gif" alt="scroll down">
+      </div>
+      <>
+        <script>
+  window.addEventListener('scroll', function () {
+    const scrollY = window.scrollY;
+    const scrollElement = document.querySelector('.scroll-animation');
 
+    if (scrollY > 1000) {
+      scrollElement.classList.add('hidden');
+    } else {
+      scrollElement.classList.remove('hidden');
+    }
+  });
+
+      </script>
     </section>
+
+
+
+
     <!-- Sección map -->
     <section id="map" class="map main-content">
       <div id="brand" class="layout">
@@ -265,14 +292,14 @@
 
 
   <div class="content content--highlight content--outro">
-    <h2 class="color_brand2 content__title">
+    <h2 class="color_brand2 content__title_center">
       <span data-i18n="The Call"></span>
       <span class="content__title_h2" data-i18n="to Action"></span>
     </h2>
-    <h2 class="content__title">
+    <!-- <h2 class="content__title">
       <span data-i18n="The Call"></span>
       <span class="content__title_h2" data-i18n="to Action"></span>
-    </h2>
+    </h2> -->
 
     <p class="text-large_w" data-i18n="text of the to Action">
     </p>

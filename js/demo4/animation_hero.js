@@ -5,26 +5,22 @@
 
   function aplicarGradiente() {
     const gradiente = `linear-gradient(90deg, ${aireColor}, ${uvColor})`;
-    document.documentElement.style.setProperty('--color-highlight-gradient', gradiente);
+    document.documentElement.style.setProperty("--color-highlight-gradient", gradiente);
 
     const svgEls = document.querySelectorAll("svg#svgStart, svg#svgEnd");
     svgEls.forEach(svg => {
-      createGradient(svg, "gradienteINDIX", aireColor, uvColor);
+      createGradient(svg, `grad-${svg.id}`, aireColor, uvColor);
       svg.querySelectorAll("path, circle, rect, polygon").forEach((sh) => {
-        sh.setAttribute("fill", "url(#gradienteINDIX)");
+        sh.setAttribute("fill", `url(#grad-${svg.id})`);
       });
     });
-
-    // console.log("Gradiente aplicado:", gradiente);
   }
 
   document.addEventListener("uvReady", (e) => {
     const { src, color } = e.detail;
     uvColor = color;
-
     const mark = document.querySelector(".hx-3");
     if (mark) mark.style.setProperty("--color-highlight-end", color);
-
     aplicarGradiente();
   });
 
@@ -32,7 +28,6 @@
     const { textoIndice, color } = e.detail;
     aireColor = color;
     currentIconColor = color;
-
     document.documentElement.style.setProperty("--color-highlight-start", color);
 
     const h2 = document.querySelector(".content__title_W");
@@ -52,7 +47,10 @@
   });
 
   function createGradient(svgEl, id, colorStart, colorEnd) {
-    const defs = svgEl.querySelector("defs") || svgEl.insertBefore(document.createElementNS("http://www.w3.org/2000/svg", "defs"), svgEl.firstChild);
+    const defs = svgEl.querySelector("defs") || svgEl.insertBefore(
+      document.createElementNS("http://www.w3.org/2000/svg", "defs"),
+      svgEl.firstChild
+    );
 
     const old = defs.querySelector(`#${id}`);
     if (old) old.remove();
@@ -79,6 +77,7 @@
 
   async function inlineSVG(imgEl) {
     if (!imgEl) return;
+
     const svgText = await fetch(imgEl.src).then((r) => r.text());
     const wrapper = document.createElement("div");
     wrapper.innerHTML = svgText;
@@ -89,8 +88,30 @@
     svgEl.id = imgEl.id;
     svgEl.classList.add(...imgEl.classList);
 
+    // Prefijar IDs internos
+    prefixInternalIds(svgEl, imgEl.id);
+
     imgEl.replaceWith(svgEl);
     return svgEl;
+  }
+
+  function prefixInternalIds(svgEl, prefix) {
+    svgEl.querySelectorAll("[id]").forEach(el => {
+      const oldId = el.id;
+      const newId = `${prefix}-${oldId}`;
+      // Cambiar el ID
+      el.id = newId;
+
+      // Buscar referencias internas que lo usen
+      svgEl.querySelectorAll(`[*|href="#${oldId}"], [fill="url(#${oldId})"], [clip-path="url(#${oldId})"]`)
+        .forEach(refEl => {
+          Array.from(refEl.attributes).forEach(attr => {
+            if (attr.value.includes(`#${oldId}`)) {
+              attr.value = attr.value.replace(`#${oldId}`, `#${newId}`);
+            }
+          });
+        });
+    });
   }
 
   document.addEventListener("DOMContentLoaded", async () => {
@@ -102,8 +123,6 @@
     ]);
 
     document.documentElement.style.setProperty("--color-highlight-start", currentIconColor);
-
-    // Aplica el gradiente inicial también
     aplicarGradiente();
 
     gsap.set("#svgStart", { opacity: 0.3, yPercent: -100, xPercent: 600 });
@@ -134,5 +153,4 @@
     icono.style.webkitBackgroundClip = "text";
     icono.style.webkitTextFillColor = "transparent";
   }
-
 })();
