@@ -117,3 +117,18 @@
 .close-menu:hover {
   transform: scale(1.2);
 }
+.redes-sociales{
+  height: 2rem;
+  width: auto;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  position: fixed;
+  bottom: 10rem;
+  justify-content: center;
+  z-index: 1000;
+
+
+}
