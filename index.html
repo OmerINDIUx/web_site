@@ -9,9 +9,10 @@
   <meta name="author" content="Codrops" />
   <link rel="shortcut icon" href="ico-01.png" />
   <!-- Fuentes -->
- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.1.0/fontfaceobserver.standalone.js"></script>
   <!-- Estilos propios y Font Awesome -->
   <link rel="stylesheet" href="css/base.css" />
@@ -28,19 +29,9 @@
   <script type="module" src="js/demo4/index.js"></script>
 </head>
 <!-- Sidebar/menu -->
-<div class="layout">
-  <header class="sidebar" id="site-header">
-    <div id="svg-container"></div>
-    <nav class="menu-right">
-      <script src="js/demo4/aire_cdmx.js"></script>
-      <a href="#" class="menu__item" data-scrollto="0" data-i18n="menu home"></a>
-      <a href="#container" class="menu__item" data-i18n="menu about"></a>
-      <a href="#" class="menu__item" data-i18n="menu projects"></a>
-      <a href="#contact" class="menu__item" data-i18n="menu contact"></a>
-      <button id="lang-toggle" class="lang-btn">ES</button>
-    </nav>
-  </header>
-</div>
+
+
+
 
 
 
@@ -65,7 +56,58 @@
 
 
 
-  
+
+  <div class="layout">
+
+
+    <header class="sidebar" id="site-header">
+      <div id="svg-container"></div>
+      <!-- menú-->
+      <!-- <nav class="menu-right">
+      <script src="js/demo4/aire_cdmx.js"></script>
+      <a href="#" class="menu__item" data-scrollto="0" data-i18n="menu home"></a>
+      <a href="#container" class="menu__item" data-i18n="menu about"></a>
+      <a href="#" class="menu__item" data-i18n="menu projects"></a>
+      <a href="#contact" class="menu__item" data-i18n="menu contact"></a>
+      <button id="lang-toggle" class="lang-btn">ES</button>
+    </nav> -->
+    </header>
+
+    <header id="site-header">
+      <div id="svg-container"></div>
+
+      <!-- Botón Hamburguesa -->
+      <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Menú desplegable -->
+      <!-- Menú desplegable -->
+      <nav class="menu-fullscreen" id="fullscreen-menu">
+        <button class="close-menu" id="close-menu" aria-label="Cerrar menú">✕</button>
+
+        <a href="#" class="menu__item" data-scrollto="0" data-i18n="menu home"></a>
+        <a href="#map" class="menu__item" data-i18n="menu about"></a>
+        <a href="#" class="menu__item" data-i18n="menu projects"></a>
+        <a href="#contact" class="menu__item" data-i18n="menu contact"></a>
+        <button id="lang-toggle" class="lang-btn">ES</button>
+      </nav>
+
+    </header>
+        <script src="js/demo4/menu.js"></script>
+
+
+   
+
+
+
+  </div>
+
+
+
+
   <main>
     <div class="frame frame--header">
       <div class="frame__heading">
@@ -73,84 +115,85 @@
     </div>
   </main>
 
-  
-    <!-- Sección brand -->
-    <section class="brand">
-  
-      <script src="js/demo4/animation_brand.js"></script>
-          <div class="scroll-animation">
-          <img src="img/Scroll Down.gif" alt="scroll down">
-      </div>
-      <>
-        <script>
-  window.addEventListener('scroll', function () {
-    const scrollY = window.scrollY;
-    const scrollElement = document.querySelector('.scroll-animation');
 
-    if (scrollY > 1000) {
-      scrollElement.classList.add('hidden');
-    } else {
-      scrollElement.classList.remove('hidden');
-    }
-  });
+  <!-- Sección brand -->
+  <section class="brand">
+
+    <script src="js/demo4/animation_brand.js"></script>
+    <div class="scroll-animation">
+      <img src="img/Scroll Down.gif" alt="scroll down">
+    </div>
+    <>
+      <script>
+        window.addEventListener('scroll', function () {
+          const scrollY = window.scrollY;
+          const scrollElement = document.querySelector('.scroll-animation');
+
+          if (scrollY > 1000) {
+            scrollElement.classList.add('hidden');
+          } else {
+            scrollElement.classList.remove('hidden');
+          }
+        });
 
       </script>
-    </section>
+  </section>
 
 
 
 
-    <!-- Sección map -->
-    <section id="map" class="map main-content">
-      <div id="brand" class="layout">
-        <!-- COLUMNA IZQUIERDA -->
-        <div class="left-column">
-          <!-- Texto e íconos -->
-          <div class="content-row">
-            <img id="svgStart" class="city-icon" src="img/bran-icon-01.svg" data-i18n="icon_start_alt" alt="">
-            <div class="content content--highlight content--intro">
-              <p class="text-large_w">
-                <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
-                <span data-i18n="hero_intro_text"></span>
-              </p>
-            </div>
-            <img id="svgEnd" class="city-icon" src="img/bran-icon-02.svg" alt="" data-i18n="icon_end_alt">
+  <!-- Sección map -->
+  <section id="map" class="map main-content">
+    <div id="brand" class="layout">
+      <!-- COLUMNA IZQUIERDA -->
+
+      <div class="left-column">
+        <!-- Texto e íconos -->
+        <div class="content-row">
+          <img id="svgStart" class="city-icon" src="img/bran-icon-01.svg" data-i18n="icon_start_alt" alt="">
+          <div class="content content--highlight content--intro">
+            <p class="text-large_w">
+              <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
+              <span data-i18n="hero_intro_text"></span>
+            </p>
           </div>
+          <img id="svgEnd" class="city-icon" src="img/bran-icon-02.svg" alt="" data-i18n="icon_end_alt">
         </div>
+      </div>
 
 
 
-        <!-- COLUMNA DERECHA -->
-        <div class="right-column">
-          <!-- MAPA -->
-          <div id="svg-container1" class="svg-container"></div>
-          <div id="svg-container2" class="svg-container"></div>
+      <!-- COLUMNA DERECHA -->
+      <div class="right-column">
+        <!-- MAPA -->
+        <div id="svg-container1" class="svg-container"></div>
+        <div id="svg-container2" class="svg-container"></div>
 
-          <!-- Hora al final -->
-          <!-- <div id="prueba" class="time-ctrl">
+        <!-- Hora al final -->
+        <!-- <div id="prueba" class="time-ctrl">
         <div class="corner-icon top-left">
           <img id="svg1" class="icon1" src="img/bran-icon-01.svg" alt="Icono inicio">
         </div> -->
 
-          <div class="center-controls">
-            <p class="text-large_M">
-              <mark class="hx-1 hx-2" data-i18n="CDMX Traffic"></mark>
-            </p>
-            <span id="hourLabel" class="hour">--:--</span>
-            <input id="hourSlider" type="range" min="0" max="23" step="1">
-          </div>
+        <div class="center-controls">
+          <p class="text-large_M">
+            <mark class="hx-1 hx-2" data-i18n="CDMX Traffic"></mark>
+          </p>
+          <span id="hourLabel" class="hour">--:--</span>
+          <input id="hourSlider" type="range" min="0" max="23" step="1">
+        </div>
 
-          <!-- <div class="corner-icon bottom-right">
+        <!-- <div class="corner-icon bottom-right">
           <img id="svg2" class="icon1" src="img/bran-icon-02.svg" alt="Icono final">
         </div> -->
-        </div>
       </div>
-  <script src="js/demo4/scroll_animation.js"></script>
-  <script src="js/demo4/animation_hero.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="js/demo4/script_map.js"></script>
+    </div>
+    <script src="js/demo4/scroll_animation.js"></script>
+    <script src="js/demo4/animation_hero.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/demo4/script_map.js"></script>
   </section>
-<!-- Hero section -->
+  <!-- Hero section -->
   <!-- <section id="container" class="hero">
     <div class="content-row">
       <img id="svgStart" class="city-icon" src="img/bran-icon-01.svg" data-i18n="icon_start_alt" alt="">
@@ -173,129 +216,129 @@
 
 
     <div class="content content--sticky bg-1">
-  <div class="content__grid">
-    <div class="content__textual">
-      <h2 class="content__title titlle-1">
-        <span data-i18n="Technology as a Force for"></span>
-        <span class="content__title_h2" data-i18n="Human Potential"></span>
-      </h2>
-      <p class="content__text text-meta" data-i18n="text of Human Potential"></p>
-    </div>
-    <div class="content__img-wrapper">
-      <div class="color_brand content__img content__img--large" id="circle_arrow"></div>
-      <script src="js/demo4/1_animation.js"></script>
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-1">
+            <span data-i18n="Technology as a Force for"></span>
+            <span class="content__title_h2" data-i18n="Human Potential"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of Human Potential"></p>
+        </div>
+        <div class="content__img-wrapper">
+          <div class="color_brand content__img content__img--large" id="circle_arrow"></div>
+          <script src="js/demo4/1_animation.js"></script>
 
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 
 
 
     <!-- BG 2 -->
-<div class="content content--sticky bg-2">
-  <div class="content__grid">
-    <div class="content__textual">
-      <h2 class="content__title titlle-2">
-        <span data-i18n="Experimentation"></span>
-        <span class="content__title_h2" data-i18n="The Pathway to Innovation"></span>
-      </h2>
-      <p class="content__text text-meta" data-i18n="text of The Pathway to Innovation"></p>
+    <div class="content content--sticky bg-2">
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-2">
+            <span data-i18n="Experimentation"></span>
+            <span class="content__title_h2" data-i18n="The Pathway to Innovation"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of The Pathway to Innovation"></p>
+        </div>
+        <div class="content__img-wrapper">
+          <img class="content__img content__img--large" src="img/10.png" alt="Innovation image" />
+        </div>
+      </div>
     </div>
-    <div class="content__img-wrapper">
-      <img class="content__img content__img--large" src="img/10.png" alt="Innovation image" />
-    </div>
-  </div>
-</div>
 
-<!-- BG 3 -->
-<div class="content content--sticky bg-3">
-  <div class="content__grid">
-    <div class="content__textual">
-      <h2 class="content__title titlle-3">
-        <span data-i18n="Harnessing"></span>
-        <span class="content__title_h2" data-i18n="Collective Wisdom"></span>
-      </h2>
-      <p class="content__text text-meta" data-i18n="text of the Collective Wisdom"></p>
+    <!-- BG 3 -->
+    <div class="content content--sticky bg-3">
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-3">
+            <span data-i18n="Harnessing"></span>
+            <span class="content__title_h2" data-i18n="Collective Wisdom"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of the Collective Wisdom"></p>
+        </div>
+        <div class="content__img-wrapper">
+          <img class="content__img content__img--large" src="img/11.png" alt="Collective Wisdom" />
+        </div>
+      </div>
     </div>
-    <div class="content__img-wrapper">
-      <img class="content__img content__img--large" src="img/11.png" alt="Collective Wisdom" />
-    </div>
-  </div>
-</div>
 
-<!-- BG 4 -->
-<div class="content content--sticky bg-4">
-  <div class="content__grid">
-    <div class="content__textual">
-      <h2 class="content__title titlle-4">
-        <span data-i18n="Public-Private Cooperation"></span>
-        <span class="content__title_h2" data-i18n="A Shared Responsibility"></span>
-      </h2>
-      <p class="content__text text-meta" data-i18n="text of the A Shared Responsibility"></p>
+    <!-- BG 4 -->
+    <div class="content content--sticky bg-4">
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-4">
+            <span data-i18n="Public-Private Cooperation"></span>
+            <span class="content__title_h2" data-i18n="A Shared Responsibility"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of the A Shared Responsibility"></p>
+        </div>
+        <div class="content__img-wrapper">
+          <img class="content__img content__img--large" src="img/12.png" alt="Shared Responsibility" />
+        </div>
+      </div>
     </div>
-    <div class="content__img-wrapper">
-      <img class="content__img content__img--large" src="img/12.png" alt="Shared Responsibility" />
-    </div>
-  </div>
-</div>
 
-<!-- BG 5 -->
-<div class="content content--sticky bg-5">
-  <div class="content__grid">
-    <div class="content__textual">
-      <h2 class="content__title titlle-5">
-        <span data-i18n="A Fluid"></span>
-        <span class="content__title_h2" data-i18n="and Responsive Agenda"></span>
-      </h2>
-      <p class="content__text text-meta" data-i18n="text of the and Responsive Agenda"></p>
+    <!-- BG 5 -->
+    <div class="content content--sticky bg-5">
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-5">
+            <span data-i18n="A Fluid"></span>
+            <span class="content__title_h2" data-i18n="and Responsive Agenda"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of the and Responsive Agenda"></p>
+        </div>
+        <div class="content__img-wrapper">
+          <img class="content__img content__img--large" src="img/8.png" alt="Responsive Agenda" />
+        </div>
+      </div>
     </div>
-    <div class="content__img-wrapper">
-      <img class="content__img content__img--large" src="img/8.png" alt="Responsive Agenda" />
-    </div>
-  </div>
-</div>
 
-<!-- BG 6 -->
-<div class="content content--sticky bg-6">
-  <div class="content__grid">
-    <div class="content__textual">
-      <h2 class="content__title titlle-6">
-        <span data-i18n="Collaboration"></span>
-        <span class="content__title_h2" data-i18n="and Partnership"></span>
-      </h2>
-      <p class="content__text text-meta" data-i18n="text of and Partnership"></p>
+    <!-- BG 6 -->
+    <div class="content content--sticky bg-6">
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-6">
+            <span data-i18n="Collaboration"></span>
+            <span class="content__title_h2" data-i18n="and Partnership"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of and Partnership"></p>
+        </div>
+        <div class="content__img-wrapper">
+          <img class="content__img content__img--large" src="img/9.png" alt="Collaboration and Partnership" />
+        </div>
+      </div>
     </div>
-    <div class="content__img-wrapper">
-      <img class="content__img content__img--large" src="img/9.png" alt="Collaboration and Partnership" />
-    </div>
-  </div>
-</div>
 
-<!-- BG 7 -->
-<div class="content content--sticky bg-7">
-  <div class="content__grid">
-    <div class="content__textual">
-      <h2 class="content__title titlle-7">
-        <span data-i18n="An Identity Rooted"></span>
-        <span class="content__title_h2" data-i18n="in Innovation"></span>
-      </h2>
-      <p class="content__text text-meta" data-i18n="text of the in Innovation"></p>
+    <!-- BG 7 -->
+    <div class="content content--sticky bg-7">
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-7">
+            <span data-i18n="An Identity Rooted"></span>
+            <span class="content__title_h2" data-i18n="in Innovation"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of the in Innovation"></p>
+        </div>
+        <div class="content__img-wrapper">
+          <img class="content__img content__img--large" src="img/8.png" alt="Innovation Identity" />
+        </div>
+      </div>
     </div>
-    <div class="content__img-wrapper">
-      <img class="content__img content__img--large" src="img/8.png" alt="Innovation Identity" />
-    </div>
-  </div>
-</div>
 
   </div>
 
 
   <div class="content content--highlight content--outro">
-    <h2 class="color_brand2 content__title_center">
+    <!-- <h2 class="color_brand2 content__title_center">
       <span data-i18n="The Call"></span>
       <span class="content__title_h2" data-i18n="to Action"></span>
-    </h2>
+    </h2> -->
     <!-- <h2 class="content__title">
       <span data-i18n="The Call"></span>
       <span class="content__title_h2" data-i18n="to Action"></span>
