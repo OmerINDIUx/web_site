@@ -9,11 +9,7 @@
   overflow: visible;
 }
 
-.content-row {
-  display: flex;
-  align-items: center;
-  margin-left: -100px; /* mejor que gap negativo */
-}
+
 
 .city-icon {
   width: 100px;

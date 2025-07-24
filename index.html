@@ -14,6 +14,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.1.0/fontfaceobserver.standalone.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
   <!-- Estilos propios y Font Awesome -->
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -136,40 +138,29 @@
 
       </script>
   </section>
-
-  <!-- Sección map -->
+  
   <section id="map" class="map main-content">
     <div id="brand" class="layout">
+      <div id="cornerTL-wrapper" class="svg-icon svg-icon--top-left">
+        <canvas id="canvasTL" width="80" height="80"></canvas>
+      </div>
       <!-- COLUMNA IZQUIERDA -->
-
       <div class="left-column">
-        <!-- Texto e íconos -->
+        <!-- TEXTO CENTRO -->
         <div class="content-row">
-          <img id="svgStart" class="city-icon" src="img/bran-icon-01.svg" data-i18n="icon_start_alt" alt="">
           <div class="content content--highlight content--intro">
             <p class="text-large_w">
               <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
               <span data-i18n="hero_intro_text"></span>
             </p>
           </div>
-          <img id="svgEnd" class="city-icon" src="img/bran-icon-02.svg" alt="" data-i18n="icon_end_alt">
         </div>
       </div>
-
-
-
       <!-- COLUMNA DERECHA -->
       <div class="right-column">
         <!-- MAPA -->
         <div id="svg-container1" class="svg-container"></div>
         <div id="svg-container2" class="svg-container"></div>
-
-        <!-- Hora al final -->
-        <!-- <div id="prueba" class="time-ctrl">
-        <div class="corner-icon top-left">
-          <img id="svg1" class="icon1" src="img/bran-icon-01.svg" alt="Icono inicio">
-        </div> -->
-
         <div class="center-controls">
           <p class="text-large_M">
             <mark class="hx-1 hx-2" data-i18n="CDMX Traffic"></mark>
@@ -177,39 +168,28 @@
           <span id="hourLabel" class="hour">--:--</span>
           <input id="hourSlider" type="range" min="0" max="23" step="1">
         </div>
-
-        <!-- <div class="corner-icon bottom-right">
-          <img id="svg2" class="icon1" src="img/bran-icon-02.svg" alt="Icono final">
-        </div> -->
+      </div>
+      <div id="cornerBR-wrapper" class="svg-icon svg-icon--bottom-right">
+        <canvas id="canvasBiR" width="120" height="120"></canvas>
       </div>
     </div>
-    <script src="js/demo4/scroll_animation.js"></script>
-    <script src="js/demo4/animation_hero.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="js/demo4/script_map.js"></script>
   </section>
-  <!-- Hero section -->
-  <!-- <section id="container" class="hero">
-    <div class="content-row">
-      <img id="svgStart" class="city-icon" src="img/bran-icon-01.svg" data-i18n="icon_start_alt" alt="">
-      <div class="content content--highlight content--intro">
-        <p class="text-large_w">
-          <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
-          <span data-i18n="hero_intro_text"></span>
-        </p>
-      </div>
-      <img id="svgEnd" class="city-icon" src="img/bran-icon-02.svg" alt="" data-i18n="icon_end_alt">
-    </div>
-  </section> -->
+
+
+  <script src="js/demo4/icons_bran.js"></script>
+
+  <script src="js/demo4/scroll_animation.js"></script>
+  <script src="js/demo4/animation_hero.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/demo4/script_map.js"></script>
+
+
   <script type="module" src="js/demo4/traduction.js"></script>
   <script src="js/demo4/ramdon_color.js"></script>
 
+
   <!-- Sticky content -->
   <div class="wrap ">
-
-
-
-
     <div class="content content--sticky bg-1">
       <div class="content__grid">
         <div class="content__textual">
@@ -222,13 +202,9 @@
         <div class="content__img-wrapper">
           <div class="color_brand content__img content__img--large" id="circle_arrow"></div>
           <script src="js/demo4/1_animation.js"></script>
-
         </div>
       </div>
     </div>
-
-
-
 
     <!-- BG 2 -->
     <div class="content content--sticky bg-2">
@@ -325,45 +301,29 @@
         </div>
       </div>
     </div>
-
   </div>
 
-
   <div class="content content--highlight content--outro">
-    <!-- <h2 class="color_brand2 content__title_center">
-      <span data-i18n="The Call"></span>
-      <span class="content__title_h2" data-i18n="to Action"></span>
-    </h2> -->
-    <!-- <h2 class="content__title">
-      <span data-i18n="The Call"></span>
-      <span class="content__title_h2" data-i18n="to Action"></span>
-    </h2> -->
-
     <p class="text-large_w" data-i18n="text of the to Action">
     </p>
     <br><br>
     <p class="text-large_M"> <mark class="hx hx-3" data-i18n="text 2 of the to Action"></mark> </p>
     </p>
-
-
-    <!-- <img class="content__img spacer" src="img/Brand_INDIx.svg" /> -->
   </div>
 
-
-<footer id="contact">
-  <div class="footer-container">
-    <h3 class="hover-image" style="--img:url(../../img/4.png)">One "X" word (Explora)</h3>
-    <h3 class="hover-image" style="--img:url(../../img/5.png)">Two "X" word (Experimenta)</h3>
-    <h3 class="hover-image" style="--img:url(../../img/8.png)">Three "X" word ()</h3>
-  </div>
-
-  <div class="footer-bottom">
-    <p class="text-meta">© 2025 INDIx. All rights reserved.</p>
-    <p class="text-meta">Powered by 
-      <a href="https://www.grupoindi.com/" target="_blank" rel="noopener noreferrer">Grupo INDI</a>
-    </p>
-  </div>
-</footer>
+  <footer id="contact">
+    <div class="footer-container">
+      <h3 class="hover-image" style="--img:url(../../img/4.png)">One "X" word (Explora)</h3>
+      <h3 class="hover-image" style="--img:url(../../img/5.png)">Two "X" word (Experimenta)</h3>
+      <h3 class="hover-image" style="--img:url(../../img/8.png)">Three "X" word ()</h3>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-meta">© 2025 INDIx. All rights reserved.</p>
+      <p class="text-meta">Powered by
+        <a href="https://www.grupoindi.com/" target="_blank" rel="noopener noreferrer">Grupo INDI</a>
+      </p>
+    </div>
+  </footer>
 
   <script src="js/imagesloaded.pkgd.min.js"></script>
 </body>
