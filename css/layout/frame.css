@@ -22,7 +22,6 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
-  z-index: 2000;
 }
 
 /* Contenido que se adapta */
@@ -92,7 +91,6 @@ span {
   padding: var(--page-padding);
   position: relative;
   display: grid;
-  z-index: 1000;
   width: 100%;
   gap: 1rem 2rem;
   justify-items: start;
@@ -102,7 +100,6 @@ span {
 
 .frame--header {
   height: 100%;
-  z-index: 3000;
   background-size: auto 80%;
   background-position: 120% 50%;
   background-repeat: no-repeat;

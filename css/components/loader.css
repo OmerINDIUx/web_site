@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   background-color: #111;
-  z-index: 9999;
+  z-index: 9998;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,15 +14,7 @@
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Esquinas con íconos */
-.corner-icon {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  z-index: 2;
-  opacity: 0;
-  transform: scale(0.5);
-}
+
 
 .top-left {
   top: 20px;
@@ -39,7 +31,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 3;
+  z-index: 9999;
   text-align: center;
 }
 
@@ -96,7 +88,7 @@
   position: absolute;
   width: 70px;
   height: 70px;
-  z-index: 2;
+  z-index: 9999
 }
 
 .top-left1 {

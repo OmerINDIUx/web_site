@@ -4,8 +4,6 @@
   position: relative;
   min-height: 100vh;
   display: flex;
-    z-index: 1001;
-
   flex-direction: column;
   justify-content: center;
 }
@@ -39,7 +37,6 @@
 
 .hover-image {
   position: relative;
-  z-index: 10000;
 }
 
 /* Imagen detrás del texto */
