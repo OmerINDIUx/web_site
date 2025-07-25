@@ -1,4 +1,5 @@
 /* BASE */
+@import url("./base/cursor.css");
 @import url("./base/typography.css");
 @import url("./base/reset.css");
 @import url("./base/variables.css");
@@ -27,3 +28,4 @@
 /* UTILS */
 @import url("./utils/helpers.css");
 @import url("./utils/responsive.css");
+
