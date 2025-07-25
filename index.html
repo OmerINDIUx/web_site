@@ -171,7 +171,6 @@
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
-
   gsap.fromTo("#content-row",
     { opacity: 0, y: 50 },
     {
@@ -191,7 +190,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
       <!-- COLUMNA DERECHA -->
-      <div class="right-column">
+      <div id="maping-contorler"class="right-column">
         <!-- MAPA -->
         <div id="svg-container1" class="svg-container"></div>
         <div id="svg-container2" class="svg-container"></div>
@@ -207,6 +206,26 @@ gsap.registerPlugin(ScrollTrigger);
         <canvas id="canvasBiR" width="120" height="120"></canvas>
       </div>
     </div>
+
+    <script>
+gsap.registerPlugin(ScrollTrigger);
+  gsap.fromTo("#maping-contorler",
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#left-column",
+        start: "top",
+        end: "top 10%", 
+        toggleActions: "restart none none reset", 
+      }
+    }
+  );
+</script>
+
   </section>
 
   <script src="js/demo4/icons_bran.js"></script>
