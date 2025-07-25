@@ -86,7 +86,7 @@ function startCanvasAnimation() {
   })
   .to(canvasTL, {
     x: 212,
-    y: 3435,
+    y: 3535,
     scale: 1,
     duration: 1
   }, 0); // el segundo parámetro "0" hace que comience al mismo tiempo que el canvasBR

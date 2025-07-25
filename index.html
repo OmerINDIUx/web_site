@@ -157,9 +157,9 @@
         <canvas id="canvasTL" width="80" height="80"></canvas>
       </div>
       <!-- COLUMNA IZQUIERDA -->
-      <div class="left-column">
+      <div id="left-column" class="left-column">
         <!-- TEXTO CENTRO -->
-        <div class="content-row">
+        <div id="content-row">
           <div class="content content--highlight content--intro">
             <p class="text-large_w">
               <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
@@ -168,6 +168,28 @@
           </div>
         </div>
       </div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+  gsap.fromTo("#content-row",
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "#left-column",
+        start: "top",
+        end: "top 10%", 
+        toggleActions: "restart none none reset", 
+      }
+    }
+  );
+</script>
+
+
       <!-- COLUMNA DERECHA -->
       <div class="right-column">
         <!-- MAPA -->
@@ -188,7 +210,6 @@
   </section>
 
   <script src="js/demo4/icons_bran.js"></script>
-
   <script src="js/demo4/scroll_animation.js"></script>
   <script src="js/demo4/animation_hero.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
