@@ -8,3 +8,6 @@
   position: relative;      /* Permite posicionar elementos hijos */
 }
 
+.branding{
+  z-index: 10000;
+}
