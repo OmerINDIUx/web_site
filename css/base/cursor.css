@@ -1,7 +1,7 @@
-
 body {
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><circle cx='8' cy='8' r='4' fill='white'/></svg>") 8 8, auto;
+  cursor: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><circle cx='8' cy='8' r='6' fill='%23F79036' /></svg>") 8 8, auto;
 }
+
 .custom-cursor {
     position: fixed;
     pointer-events: none;
@@ -20,6 +20,20 @@ body {
   .custom-cursor.clicked {
     animation: clickPulse 0.4s ease;
   }
+
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  width: 40px;
+  height: 40px;
+  z-index: 9999;
+}
+.custom-cursor svg {
+  width: 100%;
+  height: 100%;
+}
+
+
 
   @keyframes clickPulse {
     0% {

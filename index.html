@@ -34,15 +34,6 @@
 
 <body class="loading demo-4">
 
-<style>
-  .custom-cursor {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    width: 40px;
-    height: 40px;
-  }
-</style>
 
 <body>
 
@@ -52,11 +43,18 @@
   <!-- SVG PUNTERO -->
 <div class="custom-cursor">
   <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FFC043" />
+        <stop offset="100%" stop-color="#F86230" />
+      </linearGradient>
+    </defs>
     <path d="M495.01,80.63v413.88H81.13c-41.77,0-75.63-33.86-75.63-75.63V4.99h413.88
       C461.14,4.99,495.01,38.86,495.01,80.63z"
-      fill="none" stroke="#efefef" stroke-width="15" />
+      fill="none" stroke="url(#grad)" stroke-width="15" />
   </svg>
 </div>
+
 
     <script src="js/demo4/cursor.js">  </script>
 
