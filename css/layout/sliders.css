@@ -46,7 +46,7 @@
 .content__title {
   text-transform: uppercase;
   line-height: 1;
-  font-size: clamp(2rem, 3vw, 4rem);
+  font-size: clamp(1.3rem, 2.3vw, 3.3rem);
   font-weight: normal;
   margin: 0;
   padding-left: 1.2rem;
@@ -56,7 +56,7 @@
 
 .content__title_h2 {
   line-height: 0.9;
-  font-size: clamp(2rem, 3vw, 4rem);
+  font-size: clamp(1.3rem, 2.3vw, 3.3rem);
   margin: 0;
   letter-spacing: 0.105em;
 }
@@ -66,7 +66,7 @@
   max-width: 100%;
   text-align: left;
   line-height: 1.5;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding-left: 1.2rem;
   padding-top: 9%;
 }
@@ -79,13 +79,13 @@
 }
 
 .content__img {
-  width: 80%;
-  max-width: 80%;
+  width: 50%;
+  max-width: 60%;
   height: auto;
 }
 
 .content__img--large {
-  width: 80%;
+  width: 50%;
 }
 
 
