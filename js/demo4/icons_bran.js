@@ -80,13 +80,13 @@ function startCanvasAnimation() {
   })
   .to(canvasBR, {
     x: -950,       // posición absoluta en píxeles (desde su contenedor)
-    y: 2760,
+    y: 2880,
     scale: 1,
     duration: 1
   })
   .to(canvasTL, {
     x: 212,
-    y: 3535,
+    y: 3650,
     scale: 1,
     duration: 1
   }, 0); // el segundo parámetro "0" hace que comience al mismo tiempo que el canvasBR
