@@ -13,7 +13,7 @@ async function loadAndAnimateSVG() {
     container.innerHTML = "";
     container.appendChild(svgElement);
 
-    // 🌐 Animación circular uniforme (NO aleatoria)
+    // Animación circular 3D
     const baseCircles = container.querySelectorAll('.circle');
     const numClones = 12;
     const allClones = [];
@@ -40,12 +40,12 @@ async function loadAndAnimateSVG() {
     let angle = 0;
 
     function animateCircles() {
-      angle += 0.4; // Velocidad constante para todos
+      angle += 0.4;
       allClones.forEach((clones) => {
-        clones.forEach((circle, index) => {
+        clones.forEach((path, index) => {
           const offset = (360 / numClones) * index;
           const currentAngle = angle + offset;
-          circle.style.transform = `rotateY(${currentAngle}deg)`;
+          path.style.transform = `rotateY(${currentAngle}deg)`;
         });
       });
       requestAnimationFrame(animateCircles);
@@ -53,7 +53,7 @@ async function loadAndAnimateSVG() {
 
     animateCircles();
 
-    // ➕ Animar los cubos por líneas de forma independiente
+    // ✅ Cubes recorriendo líneas y palpitación al chocar con círculos
     const lines = svgElement.querySelectorAll('.line');
     const cubes = svgElement.querySelectorAll('.cube');
     const circles = svgElement.querySelectorAll('.circle');
@@ -63,7 +63,7 @@ async function loadAndAnimateSVG() {
       const length = line.getTotalLength();
       const direction = Math.random() < 0.5 ? 1 : -1;
       let startTime = null;
-      const duration = 10000 + Math.random() * 2000; // Cada cubo tiene su duración aleatoria
+      const duration = 4000 + Math.random() * 2000;
 
       function animateCube(timestamp) {
         if (!startTime) startTime = timestamp;
