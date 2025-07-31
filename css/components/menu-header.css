@@ -68,16 +68,60 @@
 
 /* ENLACES */
 .menu__item {
+  position: relative; /* Necesario para posicionar correctamente los ::before y ::after */
+  display: inline-block;
   color: white;
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 3rem;
   font-weight: 600;
+  padding: 1rem 2rem;
   transition: color 0.3s ease;
 }
 
-.menu__item:hover {
-  color: #ffcc70;
+/* Pseudo-elementos */
+.menu__item::before,
+.menu__item::after {
+  content: '';
+  position: absolute;
+  width: 1.8rem;
+  height: 1.8rem;
+  opacity: 0;
+  border: 3px solid #ff6f61;
+  transition: transform 0.3s, opacity 0.3s;
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.05, 1.29);
+  pointer-events: none;
 }
+
+.menu__item::before {
+  top: 0;
+  left: 0;
+  border-width: 8px 0 0 8px;
+  transform: translate3d(10px, 10px, 0);
+}
+
+.menu__item::after {
+  right: 0;
+  bottom: 0;
+  border-width: 0 8px 8px 0;
+  transform: translate3d(-10px, -10px, 0);
+}
+
+/* Hover activo los bordes animados */
+.menu__item:hover::before,
+.menu__item:focus::before,
+.menu__item:hover::after,
+.menu__item:focus::after {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+
+
+
+
+
+
+
 
 /* BOTÓN DE IDIOMA */
 .lang-btn {
