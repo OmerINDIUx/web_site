@@ -12,8 +12,7 @@
 .hamburger {
   position: fixed;
   left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +36,7 @@
   transition: 0.3s ease;
 }
 
-/* MENÚ FULLSCREEN */
+/* MENÚ FULLSCREEN CON ENLACES A LA IZQUIERDA */
 .menu-fullscreen {
   position: fixed;
   top: 0;
@@ -45,22 +44,24 @@
   height: 100vh;
   width: 100vw;
   background: rgba(77, 77, 77, 0.301); /* Fondo translúcido */
-  backdrop-filter: blur(12px);          /* Desenfoque para el glassmorphismo */
-  -webkit-backdrop-filter: blur(12px);  /* Compatibilidad con Safari */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Sutil borde brillante */
+  backdrop-filter: blur(20px);          /* Glassmorphism */
+  -webkit-backdrop-filter: blur(12px);  /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 2rem;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
-  border-radius: 16px; /* Opcional si usas el menú dentro de un contenedor más pequeño */
+  padding: 6rem 4rem;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
   z-index: 1000;
 }
 
+/* Mostrar el menú */
 .menu-fullscreen.show {
   opacity: 1;
   pointer-events: all;
@@ -68,7 +69,7 @@
 
 /* ENLACES */
 .menu__item {
-  position: relative; /* Necesario para posicionar correctamente los ::before y ::after */
+  position: relative;
   display: inline-block;
   color: white;
   text-decoration: none;
@@ -76,9 +77,10 @@
   font-weight: 600;
   padding: 1rem 2rem;
   transition: color 0.3s ease;
+  text-align: left;
 }
 
-/* Pseudo-elementos */
+/* Pseudo-elementos decorativos */
 .menu__item::before,
 .menu__item::after {
   content: '';
@@ -106,7 +108,7 @@
   transform: translate3d(-10px, -10px, 0);
 }
 
-/* Hover activo los bordes animados */
+/* Hover: bordes animados */
 .menu__item:hover::before,
 .menu__item:focus::before,
 .menu__item:hover::after,
@@ -115,13 +117,12 @@
   transform: translate3d(0, 0, 0);
 }
 
-
-
-
-
-
-
-
+/* CONTENEDOR DE ENLACES */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
 /* BOTÓN DE IDIOMA */
 .lang-btn {
@@ -148,7 +149,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-
+/* BOTÓN DE CIERRE */
 .close-menu {
   position: absolute;
   top: 2rem;
@@ -165,7 +166,9 @@
 .close-menu:hover {
   transform: scale(1.2);
 }
-.redes-sociales{
+
+/* REDES SOCIALES */
+.redes-sociales {
   height: 2rem;
   width: auto;
 }
@@ -174,9 +177,8 @@
   display: flex;
   gap: 1rem;
   position: fixed;
-  bottom: 10rem;
+  bottom: 2rem;
+  left: 2rem;
   justify-content: center;
   z-index: 1000;
-
-
 }
