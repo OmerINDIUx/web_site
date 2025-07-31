@@ -50,7 +50,10 @@
   z-index: 3002;
   padding: 2rem; /* opcional, para separarlo un poco del borde */
   align-items: center;
-  background-color: var(--color-white-brand,  #EFEFEF);
+  background: rgba(77, 77, 77, 0.301); /* Fondo translúcido */
+  backdrop-filter: blur(12px);          /* Desenfoque para el glassmorphismo */
+  -webkit-backdrop-filter: blur(12px);  /* Compatibilidad con Safari */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Sutil borde brillante */
   border-top-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   z-index: 301;
@@ -61,10 +64,10 @@
 
 .hour {
   font-family: "power_grotesk_bold", sans-serif;
-  font-size: 4rem;
-  margin-top: -0.6rem;
+  font-size: 1.5rem;
+  margin-top: -1.5rem;
   margin-bottom: 0.5rem;
-  color: var(--color-text, #0c0c0c);
+  color: var(--color-white-brand,  #EFEFEF);
 }
 
 #prueba {
@@ -84,9 +87,9 @@
 
 /* Slider base */
 #hourSlider {
-  width: 300px;
+  width: 180px;
   height: 6px;
-  background: var(--color-text, #0c0c0c);
+  background: var(--color-white-brand,  #EFEFEF);
   border-radius: 3px;
   outline: none;
   appearance: none;
@@ -99,7 +102,7 @@
   appearance: none;
   width: 16px;
   height: 16px;
-  background: var(--color-text, #0c0c0c);
+  background: var(--color-white-brand,  #EFEFEF);
   border-radius: 50%;
   cursor: pointer;
   margin-top: -5px;
