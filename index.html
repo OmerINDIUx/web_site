@@ -70,13 +70,18 @@
         <div id="svg-container"></div>
       </header>
       <!-- Botón Hamburguesa -->
-      <button id="lang-toggle" class="lang-btn">ES</button>
+      <div class="buttons-menu">
+        <button class="phi" aria-label="Logo Phi">
+          <img src="img/phi-01.png" alt="Logo Phi" />
+          <span class="tooltip-phi">Esta página es interactiva por lo tanto nunca la veras igual <br><br> <li>mapas</li>  <li>tiempo</li>  <li>radiación</li>  <li>temperatura</li> </span>
+        </button> <button id="lang-toggle" class="lang-btn">ES</button>
+        <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
-      <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
 
       <nav class="menu-fullscreen menu--iris" id="fullscreen-menu">
         <button class="close-menu" id="close-menu" aria-label="Cerrar menú">✕</button>
@@ -359,4 +364,5 @@
     </footer>
     <script src="js/imagesloaded.pkgd.min.js"></script>
   </body>
+
 </html>
