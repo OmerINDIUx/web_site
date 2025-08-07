@@ -99,3 +99,11 @@
   align-self: center;
   font-variation-settings: "slnt" 0, "wdth" 400, "wght" 900, "INKT" 400;
 }
+
+.content--reverse .content__grid {
+  direction: rtl;
+}
+
+.content--reverse .content__grid > * {
+  direction: ltr;
+}
