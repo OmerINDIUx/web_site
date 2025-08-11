@@ -41,8 +41,8 @@
       <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#FFC043" />
-            <stop offset="100%" stop-color="#F86230" />
+            <stop offset="0%" stop-color="#eeeeee" />
+            <stop offset="100%" stop-color="#eeeeee" />
           </linearGradient>
         </defs>
         <path d="M495.01,80.63v413.88H81.13c-41.77,0-75.63-33.86-75.63-75.63V4.99h413.88
@@ -50,11 +50,15 @@
       </svg>
     </div>
     <script src="js/demo4/cursor.js">  </script>
-    <!-- Loader -->
+
+
+    <!-- Loader 2-->
+
     <div id="loader-overlay">
       <div class="corner-icon1 top-left1">
         <img id="svg3" class="icon4" src="img/bran-icon-01.svg" alt="Icono inicio">
       </div>
+      <h1 class="complment_loader">Cities are humanity’s greatest creation. <br> smart by definition.</h1>
       <div class="loader-box">
         <div id="text_loading" class="text_load">Preparando recursos…</div>
         <div id="text_parpadeando">
@@ -69,17 +73,52 @@
       <header class="sidebar" id="site-header">
         <div id="svg-container"></div>
       </header>
+
+
+
       <!-- Botón Hamburguesa -->
       <div class="buttons-menu">
+        <div class="top-buttons">
+          <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <button id="lang-toggle" class="lang-btn">ES</button>
+        </div>
+
+
+
         <button class="phi" aria-label="Logo Phi">
           <img src="img/phi-01.png" alt="Logo Phi" />
-          <span class="tooltip-phi">Esta página es interactiva por lo tanto nunca la veras igual <br><br> <li>mapas</li>  <li>tiempo</li>  <li>radiación</li>  <li>temperatura</li> </span>
-        </button> <button id="lang-toggle" class="lang-btn">ES</button>
-        <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span class="tooltip-phi">Esta página es interactiva por lo tanto nunca la veras igual <br><br>
+            <li>mapas</li>
+            <li>tiempo</li>
+            <li>radiación</li>
+            <li>temperatura</li>
+          </span>
         </button>
+
+
+
+
+        <script>
+          const langBtn = document.querySelector(".lang-btn");
+          const hamburgerBtn = document.querySelector(".hamburger");
+
+          [langBtn, hamburgerBtn].forEach(btn => {
+            btn.addEventListener("mousemove", e => {
+              const rect = btn.getBoundingClientRect();
+              const x = e.clientX - rect.left - rect.width / 2;
+              const y = e.clientY - rect.top - rect.height / 2;
+              const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+
+              btn.style.setProperty("--angle", `${angle}deg`);
+            });
+          });
+
+        </script>
       </div>
 
 

@@ -1,147 +1,81 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Test menú fullscreen</title>
 <style>
-  body, html { margin:0; padding:0; height:100%; font-family: sans-serif; }
-
-  #site-header1 {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100vh;
-    pointer-events: auto;
-  }
-
-  .hamburger {
-    position: fixed;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+  body {
+    background: #111;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    width: 32px;
-    height: 32px;
-    background: #fff;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-    pointer-events: all;
-  }
-  .hamburger span {
-    height: 3px;
-    width: 100%;
-    background-color: black;
-    display: block;
-    border-radius: 2px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .hamburger.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-
-  .menu-fullscreen {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(77, 77, 77, 0.3);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.2);
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-    z-index: 1000;
+    height: 100vh;
   }
-  .menu-fullscreen.show {
-    opacity: 1;
-    pointer-events: all;
-  }
-  .menu__item {
-    color: white;
-    font-size: 2rem;
-    font-weight: 600;
-    text-decoration: none;
+
+  .lang-btn {
+    position: relative;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #eee;
+    background: transparent;
+    border: 2px solid #eee;
+    /* borde normal antes del hover */
+    border-radius: 6px 0px 6px 0px;
     cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
   }
-  .menu__item:hover {
-    color: #ffcc70;
+
+  .lang-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(var(--angle, 90deg),
+
+        #ffcd7000,
+        #ffcd7000,
+        #ffcd7000,
+        #ffcd7000,
+        #ffcd7000,
+        #ff6f61,
+        #ffcc70
+        );
+
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    /* Glow */
+    filter: drop-shadow(0 0 2px #ff6f61) drop-shadow(0 0 12px #ffcc70);
+
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+
+  .lang-btn:hover {
+    border-color:#eeeeee80;
+;
+    /* quitar borde blanco */
+  }
+
+  .lang-btn:hover::before {
+    opacity: 1;
   }
 </style>
-</head>
-<body>
 
-<header id="site-header1">
-  <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
-    <span></span><span></span><span></span>
-  </button>
-
-  <nav class="menu-fullscreen" id="fullscreen-menu">
-    <a href="#" class="menu__item">Home</a>
-    <a href="#map" class="menu__item">About</a>
-    <a href="#" class="menu__item">Projects</a>
-    <a href="#contact" class="menu__item">Contact</a>
-  </nav>
-</header>
+<button class="lang-btn">Hover Me</button>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const menuToggle = document.getElementById("menu-toggle");
-    const fullscreenMenu = document.getElementById("fullscreen-menu");
-    const menuLinks = fullscreenMenu.querySelectorAll(".menu__item");
+  const btn = document.querySelector(".lang-btn");
 
-    function openMenu() {
-      fullscreenMenu.classList.add("show");
-      menuToggle.classList.add("open");
-    }
+  btn.addEventListener("mousemove", e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
 
-    function closeMenu() {
-      fullscreenMenu.classList.remove("show");
-      menuToggle.classList.remove("open");
-    }
-
-    menuToggle.addEventListener("click", () => {
-      if (fullscreenMenu.classList.contains("show")) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeMenu();
-    });
-
-    menuLinks.forEach(link => {
-      link.addEventListener("click", e => {
-        e.preventDefault();
-        closeMenu();
-        const href = link.getAttribute("href");
-        if (href && href.startsWith("#")) {
-          setTimeout(() => {
-            document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-          }, 300);
-        } else {
-          window.location.href = href;
-        }
-      });
-    });
+    btn.style.setProperty("--angle", `${angle}deg`);
   });
 </script>
-
-</body>
-</html>

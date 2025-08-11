@@ -8,8 +8,6 @@
   pointer-events: none;
 }
 
-
-
 /* MENÚ FULLSCREEN CON ENLACES A LA IZQUIERDA */
 .menu-fullscreen {
   position: fixed;
@@ -18,8 +16,8 @@
   height: 100vh;
   width: 100vw;
   background: rgba(77, 77, 77, 0.301); /* Fondo translúcido */
-  backdrop-filter: blur(20px);          /* Glassmorphism */
-  -webkit-backdrop-filter: blur(12px);  /* Safari */
+  backdrop-filter: blur(20px); /* Glassmorphism */
+  -webkit-backdrop-filter: blur(12px); /* Safari */
   border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
@@ -57,7 +55,7 @@
 /* Pseudo-elementos decorativos */
 .menu__item::before,
 .menu__item::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 1.8rem;
   height: 1.8rem;
@@ -98,15 +96,6 @@
   gap: 2rem;
 }
 
-
-
-
-
-
-
-
-
-
 /* BOTÓN DE CIERRE */
 .close-menu {
   position: absolute;
@@ -141,62 +130,126 @@
   z-index: 1000;
 }
 
-
-
-
-
-
-
 /* BOTÓN DE IDIOMA */
 .lang-btn {
-  margin-top: 2rem;
-  padding: 10px 16px;
+  margin-top: 15px;
+
+  position: relative !important; /* cambiar de absolute a relative */
+  padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff;
-  background: linear-gradient(135deg, #ff6f61, #ffcc70);
-  border: none;
+  color: #eee;
+  background: transparent;
+  border: 2px solid #eee;
+  /* borde normal antes del hover */
   border-radius: 6px 0px 6px 0px;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.lang-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    var(--angle, 90deg),
+    #ffcd7000,
+    #ffcd7000,
+    #ffcd7000,
+    #ffcd7000,
+    #ffcd7000,
+    #ff6f61,
+    #ffcc70
+  );
+
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  /* Glow */
+  filter: drop-shadow(0 0 2px #ff6f61) drop-shadow(0 0 12px #ffcc70);
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
 }
 
 .lang-btn:hover {
-  background: linear-gradient(135deg, #ffcc70, #ff6f61);
-  transform: scale(1.1) rotate(2deg);
-  box-shadow: 0 6px 18px rgba(255, 111, 97, 0.4);
+  border-color: #eeeeee00;
+  /* quitar borde blanco */
 }
 
-.lang-btn:active {
-  transform: scale(0.95);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+.lang-btn:hover::before {
+  opacity: 1;
 }
-
-
-
-
-
-
-
 
 .hamburger {
+  position: relative !important; /* cambiar de absolute a relative */
+  margin: 0;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 6px;
-  width: 52px;
+  width: 75px;
   height: 52px;
   background: none;
   border-radius: 6px 0px 6px 0px;
   cursor: pointer;
-  fill: salmon;
+  color: #eee;
+  background: transparent;
+  border: 2px solid #eee;
   z-index: 999;
+  box-sizing: border-box;
+}
+
+.hamburger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  inset: 0px; /* extender 2px fuera del botón */
+  border-radius: 6px 0px 6px 0px;
+  padding: 2px;
+  background: linear-gradient(
+    var(--angle, 90deg),
+    #ffcd7000,
+    #ffcd7000,
+    #ffcd7000,
+    #ffcd7000,
+    #ffcd7000,
+    #ff6f61,
+    #ffcc70
+  );
+
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  /* Glow */
+  filter: drop-shadow(0 0 2px #ff6f61) drop-shadow(0 0 12px #ffcc70);
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.hamburger:hover {
+  border-color: #eeeeee00;
+  /* quitar borde blanco */
+}
+
+.hamburger:hover::before {
+  opacity: 1;
 }
 
 .hamburger span {
   height: 5px;
-  width: 80%;
+  width: 60%;
   background-color: #eeeeee;
   display: block;
   border-radius: 2px 0px 2px 0px;
@@ -217,22 +270,33 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-
 .buttons-menu {
   position: fixed;
-  bottom: 1rem;
-  left: 1rem;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 75px;
   display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-start;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
   z-index: 1001;
+  background: transparent;
+  padding: 0; /* elimina paddings para controlar con márgenes */
 }
 
+/* Contenedor para hamburguesa + lang-btn para que estén juntos */
+.buttons-menu .top-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;     /* empuja hacia el centro verticalmente */
+  margin-bottom: auto;  /* para centrar verticalmente el grupo */
+}
 
- .phi {
-  position: relative;
-  padding: 0;
+.phi {
+  position: relative !important; /* cambiar de absolute a relative */
+  margin: 0;
   border: none;
   background: none;
   cursor: pointer;
@@ -258,7 +322,7 @@
   background: rgba(77, 77, 77, 0.301);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 
   border-radius: 8px;
   opacity: 0;
@@ -271,4 +335,93 @@
 .phi:hover .tooltip-phi {
   opacity: 1;
   transform: translateX(-50%) translateY(-4px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Desktop / Base --- (tu CSS actual) --- */
+/* No tocamos el estilo original para pantallas grandes */
+
+/* --- Responsive para Tablets --- */
+@media (max-width: 1024px) {
+  .content--sticky {
+    width: 96vw;
+    height: auto;
+    left: 2%;
+    margin-top: 4%;
+  }
+
+  .content__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-left: 4%;
+    padding-right: 4%;
+    height: auto;
+  }
+
+  .content__textual {
+    grid-template-rows: auto auto;
+    height: auto;
+  }
+
+  .content__img {
+    width: 60%;
+    max-width: 70%;
+  }
+}
+
+/* --- Responsive para Móviles --- */
+@media (max-width: 768px) {
+  .content--sticky {
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    left: 0;
+    padding: 1.5rem 0;
+  }
+
+  .content__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1.2rem;
+  }
+
+  .content__title,
+  .content__title_center {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .content__title_h2 {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    text-align: center;
+  }
+
+  .content__text {
+    font-size: 0.95rem;
+    padding-left: 0;
+    padding-top: 0.5rem;
+    text-align: center;
+  }
+
+  .content__img {
+    width: 80%;
+    max-width: 90%;
+  }
 }

@@ -6,10 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Frases aleatorias
   const frases = [
-    "El clima cambia, como nuestras ideas.",
-    "Después de la tormenta, viene la calma.",
-    "El sol siempre vuelve a salir.",
-    "Observa las nubes, entienden el tiempo.",
+
+"the sum of countless small decisions, interactions, and exchanges.",
+"spaces where public life thrives in the unpredictable rhythms of the street. ",
+"social products: created, contested, and transformed by those who inhabit them.",
+"living laboratories for cooperation, conflict, and the negotiation of difference.",
+"places where complexity is not a problem to solve, but a resource to embrace.",
+"both fragile and resilient, capable of absorbing change while retaining their identity.",
+"a mirror of our collective values, ambitions, and inequalities.",
   ];
   loadingText.textContent = frases[Math.floor(Math.random() * frases.length)];
 
