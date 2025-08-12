@@ -1,5 +1,11 @@
 /* ------------------ ESTILOS GENERALES ------------------ */
-.bg-1, .bg-2, .bg-3, .bg-4, .bg-5, .bg-6, .bg-7 {
+.bg-1,
+.bg-2,
+.bg-3,
+.bg-4,
+.bg-5,
+.bg-6,
+.bg-7 {
   background-color: var(--color-white-brand);
 }
 
@@ -46,7 +52,7 @@
 .content__title {
   text-transform: uppercase;
   line-height: 1;
-  font-size: clamp(1.3rem, 2.3vw, 3.3rem);
+  font-size: clamp(1.7rem, 2.7vw, 3.7rem);
   font-weight: normal;
   margin: 0;
   padding-left: 1.2rem;
@@ -56,7 +62,7 @@
 
 .content__title_h2 {
   line-height: 0.9;
-  font-size: clamp(1.3rem, 2.3vw, 3.3rem);
+  font-size: clamp(1.7rem, 2.7vw, 3.7rem);
   margin: 0;
   letter-spacing: 0.105em;
 }
@@ -66,7 +72,7 @@
   max-width: 100%;
   text-align: left;
   line-height: 1.5;
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
   padding-left: 1.2rem;
   padding-top: 9%;
 }
@@ -88,11 +94,10 @@
   width: 50%;
 }
 
-
 .content__title_center {
   text-transform: uppercase;
   line-height: 1;
-  font-size: clamp(2rem, 3vw, 4rem);
+  font-size: clamp(3rem, 4vw, 5rem);
   font-weight: normal;
   margin-bottom: 2rem;
   padding-left: 1.2rem;
@@ -106,4 +111,105 @@
 
 .content--reverse .content__grid > * {
   direction: ltr;
+}
+
+/* --- Responsive para Tablets --- */
+@media (max-width: 1024px) {
+  .content--sticky {
+    width: 90vw;
+    height: 100vh;
+    left: 10%;
+    margin-top: 4%;
+    justify-content: center;
+    content: center;
+  }
+
+  .content__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-left: 4%;
+    padding-right: 4%;
+    height: auto;
+    justify-content: center;
+    content: center;
+  }
+
+  .content__textual {
+    grid-template-rows: auto auto;
+    height: auto;
+    justify-content: center;
+    content: center;
+  }
+
+  .content__img {
+    width: 60%;
+    max-width: 70%;
+  }
+
+  .content__title_h2 {
+
+    font-size: clamp(2rem, 3vw, 4rem);
+    text-align: center;
+
+  }
+
+  .content__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 3vw, 4rem);
+    font-variation-settings: "slnt" 0, "wdth" 400, "wght" 900, "INKT" 400;
+  }
+
+  .content__text {
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
+    text-align: center;
+    padding-top: 2%;
+  }
+  .content__img--large {
+  width: 40%;
+}
+}
+
+/* --- Responsive para Móviles --- */
+@media (max-width: 768px) {
+  .content--sticky {
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    left: 0;
+    justify-content: center;
+
+    padding: 1.5rem 0;
+  }
+
+  .content__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1.2rem;
+    justify-content: center;
+  }
+
+  .content__title,
+  .content__title_center {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .content__title_h2 {
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    text-align: center;
+  }
+
+  .content__text {
+    font-size: 0.95rem;
+    padding-left: 0;
+    padding-top: 0.5rem;
+    text-align: center;
+  }
+
+  .content__img {
+    width: 60%;
+    max-width: 70%;
+  }
 }
