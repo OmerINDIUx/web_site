@@ -1,110 +1,148 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const svgText = await fetch("img/Brand_INDIx_animate.svg").then((r) =>
-    r.text()
-  );
+  const svgText = await fetch("img/INDI_lab.svg").then((r) => r.text());
   const container = document.getElementById("svg-container");
   if (!container) {
     console.error("No se encontró #svg-container");
     return;
   }
   container.innerHTML = svgText;
-  const laboratorio = container.querySelector("#laboratorio");
+
   const indi = container.querySelector("#indi");
-  const logoX = container.querySelector("#logoX");
-  const cornerTL = container.querySelector("#cornerTL");
-  const cornerBR = container.querySelector("#cornerBR");
+  const logoX = container.querySelector("#lab");
+  const cornerUR = container.querySelector("#ur");
+  const cornerBL = container.querySelector("#bl");
   const grupoGeneral = container.querySelector("#grupoGeneral");
-  if (
-    ![laboratorio, indi, logoX, cornerTL, cornerBR, grupoGeneral].every(Boolean)
-  ) {
+
+  if (![indi, logoX, cornerUR, cornerBL, grupoGeneral].every(Boolean)) {
     console.error("Faltan nodos dentro del SVG");
     return;
   }
-  cornerTL.setAttribute("clip-path", "url(#liquidClipTL)");
-  cornerBR.setAttribute("clip-path", "url(#liquidClipBR)");
+
+  // Asignar clip-paths
+  cornerUR.setAttribute("clip-path", "url(#liquidClipTL)");
+  cornerBL.setAttribute("clip-path", "url(#liquidClipBR)");
+
   gsap.registerPlugin(ScrollTrigger);
-  gsap.set([laboratorio, indi, logoX, cornerTL, cornerBR], {
+
+  // Estado inicial de piezas
+  gsap.set([indi, logoX, cornerUR, cornerBL], {
     xPercent: 0,
     yPercent: 0,
     scale: 1,
     opacity: 1,
     transformOrigin: "center",
   });
-  gsap.set(grupoGeneral, {
-    xPercent: 3,
-    yPercent: 3,
-    scale: 0.6,
-    transformOrigin: "center",
-  });
+
+  function getAnimValues() {
+    if (window.innerWidth <= 770) {
+      return {
+        indi: { xPercent: -362.5, yPercent: -243, scale: 0.3 },
+        logoX: { xPercent: -414.5, yPercent: -1143, scale: 0.3 },
+        cornerUR: { xPercent: -676.5, yPercent: -451.5, scale: 0.3 },
+        cornerBL: { xPercent: -444, yPercent: -623, scale: 0.3 },
+      };
+    } else if (window.innerWidth <= 1024) {
+      return {
+        indi: { xPercent: -249, yPercent: -160, scale: 0.25 },
+        logoX: { xPercent: -332, yPercent: -884, scale: 0.25 },
+        cornerUR: { xPercent: -546.5, yPercent: -283.5, scale: 0.25 },
+        cornerBL: { xPercent: -301.5, yPercent: -477, scale: 0.25 },
+      };
+    } else {
+      return {
+        indi: { xPercent: -332.5, yPercent: -80, scale: 0.15 },
+        logoX: { xPercent: -410, yPercent: -674, scale: 0.15 },
+        cornerUR: { xPercent: -674, yPercent: -117.5, scale: 0.15 },
+        cornerBL: { xPercent: -403.5, yPercent: -358, scale: 0.15 },
+      };
+    }
+  }
+
+  function ajustarGrupo() {
+    const bbox = grupoGeneral.getBBox();
+    const containerRect = container.getBoundingClientRect();
+
+    const scaleX = (containerRect.width * 0.8) / bbox.width;
+    const scaleY = (containerRect.height * 0.8) / bbox.height;
+    let scale = Math.min(scaleX, scaleY);
+    let yPercent;
+
+    if (window.innerWidth <= 750) {
+      scale *= 1.2;
+      yPercent = -50;
+    } else if (window.innerWidth <= 1024) {
+      yPercent = -50;
+    } else {
+      scale *= 0.8;
+      yPercent = -75;
+    }
+
+    gsap.set(grupoGeneral, {
+      xPercent: -50,
+      yPercent,
+      x: "50%",
+      y: "50%",
+      scale,
+      transformOrigin: "center center",
+    });
+  }
+
+  function buildTimeline() {
+    const vals = getAnimValues();
+
+    tl.clear()
+      .to(indi, { ...vals.indi, duration: 1 }, 0.3)
+      .to(logoX, { ...vals.logoX, duration: 1 }, 0.3)
+      .to(cornerUR, { ...vals.cornerUR, duration: 1 }, 0.4)
+      .to(cornerBL, { ...vals.cornerBL, duration: 1 }, 0.4)
+      .call(
+        () => {
+          gsap.set("#site-header", { pointerEvents: "auto" });
+        },
+        null,
+        0.9
+      );
+  }
+
+  // Timeline con ScrollTrigger
   const tl = gsap.timeline({
-  defaults: { ease: "power2.inOut" }, // más suave que power2.out
-  scrollTrigger: {
-    trigger: "#map",
-    start: "-=300%",
-    end: "+=300%",
-    scrub: 0.8, // suaviza el seguimiento
-    pinSpacing: true,
-  },
-});
+    defaults: { ease: "power2.inOut" },
+    scrollTrigger: {
+      trigger: "#map",
+      start: "-=300%",
+      end: "+=200%",
+      scrub: 0.8,
+      pinSpacing: true,
+      markers: true,
+    },
+  });
 
-tl.to("#svg-container", { width: "25vw", height: "auto", duration: 1 }, 0)
-  .to(laboratorio, {
-    xPercent: -190,
-    yPercent: -270,
-    opacity: 0,
-    scale: 0,
-    duration: 1.2,
-  }, 0.2)
-  .to(indi, {
-    xPercent: -25,
-    yPercent: -18,
-    scale: 0.4,
-    duration: 1,
-  }, 0.3)
-  .to(logoX, {
-    xPercent: -230,
-    yPercent: -190,
-    scale: 0.4,
-    duration: 1,
-  }, 0.3)
-  .to(cornerTL, {
-    xPercent: -25,
-    yPercent: -185,
-    scale: 0.35,
-    duration: 1,
-  }, 0.4)
-  .to(cornerBR, {
-    xPercent: -230,
-    yPercent: -18,
-    scale: 0.35,
-    duration: 1,
-  }, 0.4)
-  .to(grupoGeneral, {
-    xPercent: 0,
-    yPercent: 1,
-    scale: 1,
-    duration: 1.2,
-  }, 0.5)
-  .call(() => {
-    gsap.set("#site-header", { pointerEvents: "auto" });
-  }, null, 0.9);
+  // Ejecutar al cargar
+  ajustarGrupo();
+  buildTimeline();
 
+  // Recalcular en resize
+  window.addEventListener("resize", () => {
+    ajustarGrupo();
+    buildTimeline();
+  });
 
+  // Función de color base
   const setFill = (color) => {
     indi.style.fill = color;
     logoX.style.fill = color;
   };
+  setFill("#EFEFEF");
+  laboratorio.style.fill = "#EFEFEF";
 
+  // Función para crear gradiente SVG
   function crearGradienteSVG(svgEl, id, color1, color2) {
     const svgns = "http://www.w3.org/2000/svg";
-
     let defs = svgEl.querySelector("defs");
     if (!defs) {
       defs = document.createElementNS(svgns, "defs");
       svgEl.insertBefore(defs, svgEl.firstChild);
     }
-
-    // Remueve gradiente viejo si existe
     const oldGrad = defs.querySelector(`#${id}`);
     if (oldGrad) oldGrad.remove();
 
@@ -127,62 +165,32 @@ tl.to("#svg-container", { width: "25vw", height: "auto", duration: 1 }, 0)
     grad.appendChild(stop2);
     defs.appendChild(grad);
   }
-setFill("#EFEFEF");
-laboratorio.style.fill = "#EFEFEF";
 
-
-
-  // ✅ Aplica directamente el gradiente desde JS como fondo o fill si quieres
+  // Gradiente dinámico
   let aireReady = false;
-  let aireColor = "#EFEFEF"; // color por defecto
-
+  let aireColor = "#EFEFEF";
   function aplicarAireColor(color) {
     aireReady = true;
     aireColor = color;
-
     const gradiente = `linear-gradient(to right, ${aireColor}, #18B2E8)`;
     document.documentElement.style.setProperty(
       "--color-highlight-start",
       gradiente
     );
-
-    // Aplicar como fondo CSS
     const target = document.querySelector(".aire-gradiente-target");
-    if (target) {
-      target.style.background = `var(--color-highlight-start)`;
-    }
-
-    // Crear gradiente SVG y aplicarlo a los elementos que quieres que tengan degradado
+    if (target) target.style.background = `var(--color-highlight-start)`;
     const svg = container.querySelector("svg");
     crearGradienteSVG(svg, "gradienteAire", aireColor, "#18B2E8");
-
-    cornerTL.setAttribute("fill", "url(#gradienteAire)");
-    cornerBR.setAttribute("fill", "url(#gradienteAire)");
-
-    // Log para ver el valor real
-    console.log(
-      "🎨 Gradiente CSS aplicado → --color-highlight-start:",
-      getComputedStyle(document.documentElement)
-        .getPropertyValue("--color-highlight-start")
-        .trim()
-    );
+    cornerUR.setAttribute("fill", "url(#gradienteAire)");
+    cornerBL.setAttribute("fill", "url(#gradienteAire)");
   }
 
-  document.addEventListener("aireSaludReady", (e) => {
-    aplicarAireColor(e.detail.color);
-  });
-
-  if (window.aireSaludColor) {
-    aplicarAireColor(window.aireSaludColor);
-  }
-
+  document.addEventListener("aireSaludReady", (e) =>
+    aplicarAireColor(e.detail.color)
+  );
+  if (window.aireSaludColor) aplicarAireColor(window.aireSaludColor);
   setTimeout(() => {
-    if (!aireReady) {
-      console.warn(
-        "⚠️ No se recibió el evento 'aireSaludReady'. Usando color por defecto."
-      );
-      aplicarAireColor(aireColor);
-    }
+    if (!aireReady) aplicarAireColor(aireColor);
   }, 5000);
 
   // Smooth scroll menú
@@ -190,7 +198,6 @@ laboratorio.style.fill = "#EFEFEF";
     const startY = window.scrollY;
     const distance = targetY - startY;
     let startTime = null;
-
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
@@ -198,7 +205,6 @@ laboratorio.style.fill = "#EFEFEF";
       window.scrollTo(0, startY + distance * percent);
       if (percent < 1) requestAnimationFrame(step);
     };
-
     requestAnimationFrame(step);
   };
 
