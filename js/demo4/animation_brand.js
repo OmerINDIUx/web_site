@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // Asignar clip-paths
+  // Clip-paths
   cornerUR.setAttribute("clip-path", "url(#liquidClipTL)");
   cornerBL.setAttribute("clip-path", "url(#liquidClipBR)");
 
@@ -89,43 +89,48 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function buildTimeline() {
     const vals = getAnimValues();
-
     tl.clear()
       .to(indi, { ...vals.indi, duration: 1 }, 0.3)
       .to(logoX, { ...vals.logoX, duration: 1 }, 0.3)
-      .to(cornerUR, { ...vals.cornerUR, duration: 1 }, 0.4)
-      .to(cornerBL, { ...vals.cornerBL, duration: 1 }, 0.4)
-      .call(
-        () => {
-          gsap.set("#site-header", { pointerEvents: "auto" });
-        },
-        null,
-        0.9
-      );
+      .to(cornerUR, { ...vals.cornerUR, duration: 0.7 }, 0.4)
+      .to(cornerBL, { ...vals.cornerBL, duration: 0.7 }, 0.4)
+      .call(() => {
+        gsap.set("#site-header", { pointerEvents: "auto" });
+      }, null, 0.9);
   }
 
-  // Timeline con ScrollTrigger
+  function getTimelineVlues() {
+    if (window.innerWidth <= 770) {
+      return { start: "top top", end: "bottom center" };
+    } else {
+      return { start: "top bottom", end: "center bottom" };
+    }
+  }
+
+  // Inicializar ScrollTrigger con valores dinámicos
+  let { start, end } = getTimelineVlues();
   const tl = gsap.timeline({
     defaults: { ease: "power2.inOut" },
     scrollTrigger: {
       trigger: "#brand",
-      start: "top center", // empieza cuando #map entra al centro
-      end: "center center", // termina cuando #map sale del centro
-      // start: "-=300%",
-      // end: "+=200%",
+      start,
+      end,
       scrub: 0.8,
       pinSpacing: true,
       markers: true,
     },
   });
 
-  // Ejecutar al cargar
+  // Ejecutar inicialización
   ajustarGrupo();
   buildTimeline();
 
   // Recalcular en resize
   window.addEventListener("resize", () => {
     ajustarGrupo();
+    ({ start, end } = getTimelineVlues());
+    tl.scrollTrigger.start = start;
+    tl.scrollTrigger.end = end;
     buildTimeline();
   });
 
@@ -137,7 +142,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setFill("#EFEFEF");
   laboratorio.style.fill = "#EFEFEF";
 
-  // Función para crear gradiente SVG
+  // Crear gradiente SVG
   function crearGradienteSVG(svgEl, id, color1, color2) {
     const svgns = "http://www.w3.org/2000/svg";
     let defs = svgEl.querySelector("defs");

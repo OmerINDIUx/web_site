@@ -57,38 +57,44 @@ function startCanvasAnimation() {
   // POSICIÓN A (estado inicial)
   gsap.set(canvasTL, {
     x: 600,       // posición absoluta en píxeles (desde su contenedor)
-    y: 3100,
+    y: 1500,
     scale: 1,
     transformOrigin: "center",
   });
 
   gsap.set(canvasBR, {
     x: -1150,
-    y: 2200,
+    y: 550,
     scale: 1,
     transformOrigin: "center",
   });
+
 
   // TIMELINE con ScrollTrigger
   gsap.timeline({
     scrollTrigger: {
       trigger: "#map", // elemento que activa el scroll
-      start: "top center",    // empieza cuando #map entra al centro
-      end: "center center",   // termina cuando #map sale del centro
+      start: "top bottom ", // empieza cuando #map entra al centro
+      end: "bottom bottom ", // termina cuando #map sale del centro
       scrub: 1,
       markers: true,
     },
   })
-  .to(canvasBR, {
+    .to(canvasBR, {
     x: -950,       // posición absoluta en píxeles (desde su contenedor)
-    y: 2880,
+    y: 1790,
     scale: 1,
     duration: 1
   })
   .to(canvasTL, {
     x: 212,
-    y: 3650,
+    y: 2570,
     scale: 1,
     duration: 1
-  }, 0); // el segundo parámetro "0" hace que comience al mismo tiempo que el canvasBR
+  }, 0);
 }
+
+
+
+
+ // el segundo parámetro "0" hace que comience al mismo tiempo que el canvasBR
