@@ -108,9 +108,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const tl = gsap.timeline({
     defaults: { ease: "power2.inOut" },
     scrollTrigger: {
-      trigger: "#map",
-      start: "-=300%",
-      end: "+=200%",
+      trigger: "#brand",
+      start: "top center", // empieza cuando #map entra al centro
+      end: "center center", // termina cuando #map sale del centro
+      // start: "-=300%",
+      // end: "+=200%",
       scrub: 0.8,
       pinSpacing: true,
       markers: true,

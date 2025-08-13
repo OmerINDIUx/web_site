@@ -76,6 +76,7 @@ function startCanvasAnimation() {
       start: "top center",    // empieza cuando #map entra al centro
       end: "center center",   // termina cuando #map sale del centro
       scrub: 1,
+      markers: true,
     },
   })
   .to(canvasBR, {
