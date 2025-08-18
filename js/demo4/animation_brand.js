@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       };
     } else {
       return {
-        indi: { xPercent: -332.5, yPercent: -80, scale: 0.15 },
-        logoX: { xPercent: -410, yPercent: -674, scale: 0.15 },
-        cornerUR: { xPercent: -674, yPercent: -117.5, scale: 0.15 },
-        cornerBL: { xPercent: -403.5, yPercent: -358, scale: 0.15 },
+        indi: { xPercent: -344.5, yPercent: -80, scale: 0.15 },
+        logoX: { xPercent: -417, yPercent: -668.5, scale: 0.15 },
+        cornerUR: { xPercent: -687.5, yPercent: -117.5, scale: 0.15 },
+        cornerBL: { xPercent: -418.5, yPercent: -354.5, scale: 0.15 },
       };
     }
   }

@@ -34,23 +34,25 @@
 
 <body class="loading demo-4">
 
-<script>
-let resizeTimer;
+  <script>
+    let resizeTimer;
 
-function shouldEnableReload() {
-  // Solo habilitar si NO es celular (ej. más de 768px de ancho)
-  return window.innerWidth > 768;
-}
+    // Esto evita que el navegador recuerde la posición de scroll
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
 
-if (shouldEnableReload()) {
-  window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      location.reload();
-    }, 300); // espera 300ms después de que el usuario deja de redimensionar
-  });
-}
-</script>
+    // Siempre al pixel 0 al cargar
+    window.scrollTo(0, 0);
+
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        window.scrollTo(0, 0); // posición inicial antes de recargar
+        location.reload();
+      }, 300); // espera 300ms después de dejar de redimensionar
+    });
+  </script>
 
 
 
@@ -62,79 +64,79 @@ if (shouldEnableReload()) {
 
 
 
-    <!-- Botón Hamburguesa -->
-    <div class="buttons-menu">
-      <div class="top-buttons">
-        <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <button id="lang-toggle" class="lang-btn">ES</button>
-      </div>
-
-
-
-      <button class="phi" aria-label="Logo Phi">
-        <img src="img/phi-01.png" alt="Logo Phi" />
-        <span class="tooltip-phi">Esta página es interactiva por lo tanto nunca la veras igual <br><br>
-          <li>mapas</li>
-          <li>tiempo</li>
-          <li>radiación</li>
-          <li>temperatura</li>
-        </span>
+  <!-- Botón Hamburguesa -->
+  <div class="buttons-menu">
+    <div class="top-buttons">
+      <button class="hamburger" id="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
 
-
-
-
-      <script>
-        const langBtn = document.querySelector(".lang-btn");
-        const hamburgerBtn = document.querySelector(".hamburger");
-
-        [langBtn, hamburgerBtn].forEach(btn => {
-          btn.addEventListener("mousemove", e => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
-
-            btn.style.setProperty("--angle", `${angle}deg`);
-          });
-        });
-
-      </script>
+      <button id="lang-toggle" class="lang-btn">ES</button>
     </div>
 
 
-    <nav id="nav" class="nav menu-fullscreen menu--iris" id="fullscreen-menu">
-      <button class="close-menu" id="close-menu" aria-label="Cerrar menú">✕</button>
-      <a href="#" class="menu__item" data-scrollto="0" data-i18n="menu home"></a>
-      <a href="#map" class="menu__item" data-i18n="menu about"></a>
-      <a href="#" class="menu__item" data-i18n="menu projects"></a>
-      <a href="#contact" class="menu__item" data-i18n="menu contact"></a>
-      <div class="social-icons">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <img class="redes-sociales" src="img/social_networt_icon/facebook.png">
-        </a>
-        <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-          <img class="redes-sociales" src="img/social_networt_icon/twitter.png">
-        </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <img class="redes-sociales" src="img/social_networt_icon/linkedin.png">
-        </a>
-        <a href="https://instagran.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <img class="redes-sociales" src="img/social_networt_icon/instagram.png">
-        </a>
-      </div>
-    </nav>
+
+    <button class="phi" aria-label="Logo Phi">
+      <img src="img/phi-01.png" alt="Logo Phi" />
+      <span class="tooltip-phi">Esta página es interactiva por lo tanto nunca la veras igual <br><br>
+        <li>mapas</li>
+        <li>tiempo</li>
+        <li>radiación</li>
+        <li>temperatura</li>
+      </span>
+    </button>
 
 
 
-    <script src="js/demo4/gsap-menu.js">  </script>
-    </header>
-    <script src="js/demo4/menu.js"></script>
+
+    <script>
+      const langBtn = document.querySelector(".lang-btn");
+      const hamburgerBtn = document.querySelector(".hamburger");
+
+      [langBtn, hamburgerBtn].forEach(btn => {
+        btn.addEventListener("mousemove", e => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+
+          btn.style.setProperty("--angle", `${angle}deg`);
+        });
+      });
+
+    </script>
+  </div>
+
+
+  <nav class="nav menu-fullscreen menu--iris" id="fullscreen-menu">
+    <button class="close-menu" id="close-menu" aria-label="Cerrar menú">✕</button>
+    <a href="#" class="menu__item" data-scrollto="0" data-i18n="menu home"></a>
+    <a href="#map" class="menu__item" data-i18n="menu about"></a>
+    <a href="#" class="menu__item" data-i18n="menu projects"></a>
+    <a href="#contact" class="menu__item" data-i18n="menu contact"></a>
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <img class="redes-sociales" src="img/social_networt_icon/facebook.png">
+      </a>
+      <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+        <img class="redes-sociales" src="img/social_networt_icon/twitter.png">
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <img class="redes-sociales" src="img/social_networt_icon/linkedin.png">
+      </a>
+      <a href="https://instagran.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img class="redes-sociales" src="img/social_networt_icon/instagram.png">
+      </a>
+    </div>
+  </nav>
+
+
+
+  <script src="js/demo4/gsap-menu.js">  </script>
+  </header>
+  <script src="js/demo4/menu.js"></script>
   </div>
 
   <main>
@@ -202,9 +204,9 @@ if (shouldEnableReload()) {
 
       <!-- COLUMNA DERECHA -->
       <div id="maping-contorler" class="right-column">
-        <!-- MAPA -->
-        <div id="svg-container1" class="svg-container"></div>
-        <div id="svg-container2" class="svg-container"></div>
+        <!-- VIDEO sin controles -->
+        <video id="trafficVideo" width="100%" preload="auto" muted playsinline></video>
+
         <div class="center-controls">
           <p class="text-large_M">
             <mark class="hx-1 hx-2" data-i18n="CDMX Traffic"></mark>
@@ -213,30 +215,29 @@ if (shouldEnableReload()) {
           <input id="hourSlider" type="range" min="0" max="23" step="1">
         </div>
       </div>
-      <div id="cornerBR-wrapper" class="svg-icon svg-icon--bottom-right">
-        <canvas id="canvasBiR" width="120" height="120"></canvas>
-      </div>
-    </div>
 
-    <script>
-      gsap.registerPlugin(ScrollTrigger);
-      gsap.fromTo("#maping-contorler",
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: "#left-column",
-            start: "top 25%",
-            end: "top 10%",
-            toggleActions: "restart none none reset",
+
+
+
+      <script>
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.fromTo("#maping-contorler",
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: "#left-column",
+              start: "top 25%",
+              end: "top 10%",
+              toggleActions: "restart none none reset",
+            }
           }
-        }
-      );
-    </script>
-  <script src="js/demo4/icons_bran.js"></script>
+        );
+      </script>
+      <script src="js/demo4/icons_bran.js"></script>
   </section>
 
 
@@ -409,7 +410,7 @@ if (shouldEnableReload()) {
   <script src="js/demo4/cursor.js">  </script>
 
 
-      <div id="loader-overlay">
+  <div id="loader-overlay">
     <div class="corner-icon1 top-left1">
       <img id="svg3" class="icon4" src="img/bran-icon-01.svg" alt="Icono inicio">
     </div>
@@ -429,11 +430,11 @@ if (shouldEnableReload()) {
 
 
 
-    <header class="sidebar" id="site-header">
-      <div id="svg-container"></div>
-    </header>
+  <header class="sidebar" id="site-header">
+    <div id="svg-container"></div>
+  </header>
 
-    
+
 
 
 
