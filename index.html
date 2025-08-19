@@ -34,7 +34,7 @@
 
 <body class="loading demo-4">
 
-  <script>
+  <!-- <script>
     let resizeTimer;
 
     // Esto evita que el navegador recuerde la posición de scroll
@@ -52,7 +52,7 @@
         location.reload();
       }, 300); // espera 300ms después de dejar de redimensionar
     });
-  </script>
+  </script> -->
 
 
 
@@ -147,8 +147,20 @@
   </main>
   <!-- Sección brand -->
   <section id="brand" class="brand">
+
+    <div id="svg-wrapper">
+      <!-- SVG inicial (cuadrado) -->
+      <div id="svg-square" class="svg-containedor"></div>
+      <!-- SVG destino (rectángulo, oculto al inicio) -->
+      <div id="svg-rect" class="svg-containedor hidden"></div>
+    </div>
+
     <script clas="branding" src="js/demo4/animation_brand.js"></script>
     <div class="scroll-animation">
+
+
+
+
       <img src="img/Scroll Down.gif" alt="scroll down">
     </div>
     <script>

@@ -1,81 +1,142 @@
+<div id="svg-wrapper">
+  <!-- SVG inicial (cuadrado) -->
+  <div id="svg-square" class="svg-containedor"></div>
+  <!-- SVG destino (rectángulo, oculto al inicio) -->
+  <div id="svg-rect" class="svg-containedor hidden"></div>
+</div>
+
 <style>
-  body {
-    background: #111;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .lang-btn {
-    position: relative;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #eee;
-    background: transparent;
-    border: 2px solid #eee;
-    /* borde normal antes del hover */
-    border-radius: 6px 0px 6px 0px;
-    cursor: pointer;
+  #svg-wrapper {
+    position: fixed;
+    width: 100%;
+    height: 200vh;
+    /* espacio para scroll */
     overflow: hidden;
-    transition: border-color 0.2s ease;
   }
 
-  .lang-btn::before {
-    content: "";
+  .svg-containedor {
     position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(var(--angle, 90deg),
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-        #ffcd7000,
-        #ffcd7000,
-        #ffcd7000,
-        #ffcd7000,
-        #ffcd7000,
-        #ff6f61,
-        #ffcc70
-        );
-
-
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-
-    /* Glow */
-    filter: drop-shadow(0 0 2px #ff6f61) drop-shadow(0 0 12px #ffcc70);
-
+  /* ahora se oculta con opacity (para que GSAP pueda medir elementos) */
+  .hidden {
     opacity: 0;
-    transition: opacity 0.2s ease;
     pointer-events: none;
   }
 
-  .lang-btn:hover {
-    border-color:#eeeeee80;
-;
-    /* quitar borde blanco */
+  .INDI path {
+    fill: #eee;
   }
 
-  .lang-btn:hover::before {
-    opacity: 1;
+  .LAB path {
+    fill: #eee;
+  }
+
+  .colorkey path {
+    fill: blueviolet;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
   }
 </style>
 
-<button class="lang-btn">Hover Me</button>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-  const btn = document.querySelector(".lang-btn");
+  document.addEventListener("DOMContentLoaded", async () => {
+    const [squareText, rectText] = await Promise.all([
+      fetch("svg/indi-lab_Square.svg").then(r => r.text()),
+      fetch("svg/indi-lab_Vertical.svg").then(r => r.text())
+    ]);
 
-  btn.addEventListener("mousemove", e => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+    const squareContainer = document.getElementById("svg-square");
+    const rectContainer = document.getElementById("svg-rect");
 
-    btn.style.setProperty("--angle", `${angle}deg`);
+    squareContainer.innerHTML = squareText;
+    rectContainer.innerHTML = rectText;
+
+    const squareSvg = squareContainer.querySelector("svg");
+    const rectSvg = rectContainer.querySelector("svg");
+
+    // IDs que queremos animar
+    const ids = ["INDI", "LAB", "keyTop", "keyButton"];
+
+    // Grupos completos
+    const squareGroup = squareSvg.querySelector("#IndiGrup");
+    const rectGroup = rectSvg.querySelector("#IndiGrup");
+
+    // Escala inicial del cuadrado
+    gsap.set(squareGroup, { scale: 0.2, y: "5%", transformOrigin: "top center" });
+
+    // Calcular posiciones de rectGroup con respecto al wrapper
+    const wrapper = document.getElementById("svg-wrapper");
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const targetX = wrapperRect.width * 0.015; // 1.5%
+    const targetY = wrapperRect.height * 0.02; // 2%
+
+    // Posición final del rectángulo
+    gsap.set(rectGroup, {
+      scale: 0.15,
+      x: targetX,
+      y: targetY,
+      transformOrigin: "top left"
+    });
+
+    // Timeline con scroll
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#svg-wrapper",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+        markers: true
+      }
+    });
+
+    // Morph de cada elemento
+    ids.forEach(id => {
+      const fromEl = squareSvg.querySelector(`#${id}`);
+      const toEl = rectSvg.querySelector(`#${id}`);
+      if (!fromEl || !toEl) return;
+
+      const fromBox = fromEl.getBBox();
+      const toBox = toEl.getBBox();
+
+      // Diferencias de posición
+      const dx = (toBox.x + toBox.width / 2) - (fromBox.x + fromBox.width / 2);
+      const dy = (toBox.y + toBox.height / 2) - (fromBox.y + fromBox.height / 2);
+
+      // Escala relativa
+      const scaleX = toBox.width / fromBox.width;
+      const scaleY = toBox.height / fromBox.height;
+      const scale = Math.min(scaleX, scaleY);
+
+      gsap.set(fromEl, { transformOrigin: "50% 50%" });
+
+      tl.to(fromEl, {
+        x: dx,
+        y: dy,
+        scale: scale,
+        ease: "power2.inOut"
+      }, 0);
+    });
+
+    tl.to(squareGroup, {
+      y: "-1.5%",
+      x: "-66%",
+      scale: 0.025,
+      duration: 0.5,
+      transformOrigin: "top left" // esquina superior izquierda del grupo
+    }, 0);
+
+
   });
 </script>
