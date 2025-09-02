@@ -24,7 +24,31 @@
   width: 100%;
   height: auto;
 }
+.corner {
+  position: absolute;
+  width: 200px;
+  /* ajusta tamaño */
+  height: auto;
+  pointer-events: none;
+}
 
+.layout {
+  display: flex;
+  flex-direction: row; /* lado a lado */
+  height: 100vh;       /* ocupa toda la pantalla */
+  width: 100vw;
+}
+
+.left-column,
+.right-column {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center; /* centra horizontalmente el contenido */
+  align-items: center;     /* centra verticalmente el contenido */
+  box-sizing: border-box;
+  position: relative;
+}
 /* COLUMNA IZQUIERDA: 40% */
 .left-column {
   width: 50%;
@@ -43,7 +67,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end; /* Alinea los hijos dentro de la columna */
-  z-index: 3002;
   padding: 2rem; /* opcional, para separarlo un poco del borde */
   align-items: center;
   background: rgba(77, 77, 77, 0.301); /* Fondo translúcido */
@@ -61,10 +84,7 @@
   margin-top: -1.5rem;
   margin-bottom: 0.5rem;
   color: var(--color-white-brand, #efefef);
-}
-
-#prueba {
-  z-index: 810;
+  z-index: 301;
 }
 
 #svg-container {
@@ -72,6 +92,7 @@
   height: 100vh;
   position: absolute;
   overflow: visible;
+  z-index: 301;
 }
 
 .icon1 {
@@ -88,8 +109,11 @@
   appearance: none;
   margin: 0;
   position: relative;
+  z-index: 301;
 }
-
+.mapa_video {
+  z-index: 1;
+}
 /* WebKit (Chrome, Safari) */
 #hourSlider::-webkit-slider-thumb {
   appearance: none;
@@ -99,12 +123,14 @@
   border-radius: 50%;
   cursor: pointer;
   margin-top: -5px;
+  z-index: 301;
 }
 
 #hourSlider::-webkit-slider-runnable-track {
   background: #d9e7e50f;
   height: 6px;
   border-radius: 3px;
+  z-index: 301;
 }
 
 /* Firefox */
@@ -115,12 +141,14 @@
   border-radius: 50%;
   cursor: pointer;
   border: none;
+  z-index: 301;
 }
 
 #hourSlider::-moz-range-track {
   background: #d9e7e50f;
   height: 6px;
   border-radius: 3px;
+  z-index: 301;
 }
 
 /* Edge */
@@ -130,6 +158,7 @@
   background: #43d7cd;
   border-radius: 50%;
   cursor: pointer;
+  z-index: 301;
 }
 
 #hourSlider::-ms-track {
@@ -137,6 +166,7 @@
   border-color: transparent;
   color: transparent;
   height: 6px;
+  z-index: 301;
 }
 
 /* Reloj abajo */
@@ -149,6 +179,7 @@
   align-items: center;
   color: var(--color-text, #0c0c0c);
   position: relative;
+  z-index: 301;
 }
 
 .right-column {
@@ -158,6 +189,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  /* z-index: 301; */
 }
 
 .svg-container {
@@ -173,7 +205,7 @@
   position: absolute;
   width: 70px;
   height: 70px;
-  z-index: 200;
+  z-index: 2;
 }
 
 .top-left {
@@ -190,7 +222,6 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  
 }
 
 #content-row {
@@ -262,12 +293,16 @@
   .svg-container {
     height: auto;
     min-height: 250px;
-    
   }
 
   .content-row {
     flex-direction: column;
     gap: 0.5rem;
-    
   }
+}
+
+
+#trafficVideo {
+  opacity: .53;              /* controla transparencia */
+  mix-blend-mode: multiply;  /* aplica efecto Multiply */
 }

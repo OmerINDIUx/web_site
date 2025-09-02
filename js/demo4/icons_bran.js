@@ -1,100 +1,45 @@
-function renderSVGToCanvas(svgString, canvasId, width, height, callback) {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) {
-    console.warn(`Canvas con id '${canvasId}' no encontrado.`);
-    return;
-  }
+window.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
 
-  canvas.width = width;
-  canvas.height = height;
+    const bottomLeft = document.querySelector(".corner-bottom-left");
+    const topRight   = document.querySelector(".corner-top-right");
 
-  const ctx = canvas.getContext('2d');
+    // Posición inicial (en el centro)
+    gsap.set([bottomLeft, topRight], {
+      xPercent: -50,
+      yPercent: -50,
+      left: "50%",
+      top: "50%",
+      position: "absolute",
+      opacity: 0,
+      scale: 0.25
+    });
 
-  const svgBlob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
-  const url = URL.createObjectURL(svgBlob);
+    // Timeline para animar ambos corners
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#map",   // 🔥 Se dispara al llegar a la sección #map
+        start: "top center", // empieza cuando la parte superior de #map llega al centro de la pantalla
+        toggleActions: "play none none reverse"
+      }
+    });
 
-  const img = new Image();
-  img.onload = function () {
-    ctx.clearRect(0, 0, width, height);
-    ctx.drawImage(img, 0, 0, width, height);
-    URL.revokeObjectURL(url);
-    if (callback) callback(canvas);
-  };
-  img.onerror = function () {
-    console.error(`Error cargando imagen SVG para canvas ${canvasId}`);
-  };
-  img.src = url;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  const svgTopLeft = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="23.5,100 0,100 0,0 100,0 100,23.5 23.5,23.5" fill="#eee"/>
-    </svg>`;
-
-  const svgBottomRight = `
-    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="76.4,0 100,0 100,100 0,100 0,76.4 76.4,76.4" fill="#eee"/>
-    </svg>`;
-
-  // Cuando ambos SVGs hayan sido renderizados, inicia la animación
-  let loadedCount = 0;
-  const onCanvasReady = () => {
-    loadedCount++;
-    if (loadedCount === 2) startCanvasAnimation();
-  };
-
-  renderSVGToCanvas(svgTopLeft, 'canvasTL', 50, 50, onCanvasReady);
-  renderSVGToCanvas(svgBottomRight, 'canvasBiR', 150, 150, onCanvasReady);
-});
-
-function startCanvasAnimation() {
-  const canvasTL = document.getElementById('cornerTL-wrapper');
-  const canvasBR = document.getElementById('cornerBR-wrapper');
-
-  if (!canvasTL || !canvasBR) return;
-
-  // POSICIÓN A (estado inicial)
-  gsap.set(canvasTL, {
-    x: 600,       // posición absoluta en píxeles (desde su contenedor)
-    y: 1500,
-    scale: 1,
-    transformOrigin: "center",
+    tl.to(bottomLeft, {
+      duration: 1.5,
+      left: "0%",
+      top: "60%",
+      xPercent: 0,
+      yPercent: -50,
+      opacity: 1,
+      ease: "power3.out"
+    })
+    .to(topRight, {
+      duration: 1.5,
+      left: "90%",
+      top: "30%",
+      xPercent: -50,
+      yPercent: 0,
+      opacity: 1,
+      ease: "power3.out"
+    }, "<"); // "<" = que empiece al mismo tiempo que la anterior
   });
-
-  gsap.set(canvasBR, {
-    x: -1150,
-    y: 550,
-    scale: 1,
-    transformOrigin: "center",
-  });
-
-
-  // TIMELINE con ScrollTrigger
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: "#map", // elemento que activa el scroll
-      start: "top bottom ", // empieza cuando #map entra al centro
-      end: "bottom bottom ", // termina cuando #map sale del centro
-      scrub: 1,
-      markers: true,
-    },
-  })
-    .to(canvasBR, {
-    x: -950,       // posición absoluta en píxeles (desde su contenedor)
-    y: 1790,
-    scale: 1,
-    duration: 1
-  })
-  .to(canvasTL, {
-    x: 212,
-    y: 2570,
-    scale: 1,
-    duration: 1
-  }, 0);
-}
-
-
-
-
- // el segundo parámetro "0" hace que comience al mismo tiempo que el canvasBR

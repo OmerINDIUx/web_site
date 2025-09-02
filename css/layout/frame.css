@@ -40,6 +40,8 @@ main::before {
   position: fixed;
   top: -100%;
   width: 300%;
+    /* z-index: 10; */
+
 }
 
 

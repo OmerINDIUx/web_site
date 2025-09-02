@@ -34,7 +34,7 @@
 
 <body class="loading demo-4">
 
-  <!-- <script>
+  <script>
     let resizeTimer;
 
     // Esto evita que el navegador recuerde la posición de scroll
@@ -52,7 +52,7 @@
         location.reload();
       }, 300); // espera 300ms después de dejar de redimensionar
     });
-  </script> -->
+  </script>
 
 
 
@@ -176,80 +176,81 @@
       });
     </script>
   </section>
+  <div class="stay">
+    <section id="map" class="main-content">
+      <div id="brand" class="layout section">
+        <!-- COLUMNA IZQUIERDA -->
+        <div id="left-column" class="left-column">
+          <div id="content-row">
+            <div class="content content--highlight content--intro">
+              <p class="text-large_w">
+                <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
+                <span data-i18n="hero_intro_text"></span>
+              </p>
+            </div>
+          </div>
+          <!-- CORNERS -->
+          <div class="corner corner-bottom-left">
+            <img src="svg/cornner_bottom_left.svg" alt="Corner Bottom Left">
+          </div>
+          <div class="corner corner-top-right">
+            <img src="svg/cornner_top_right.svg" alt="Corner Top Right">
+          </div>
+        </div>
 
-  <section id="map" class="map main-content">
-    <div id="brand" class="layout">
-      <div id="cornerTL-wrapper" class="svg-icon svg-icon--top-left">
-        <canvas id="canvasTL" width="80" height="80"></canvas>
-      </div>
-      <!-- COLUMNA IZQUIERDA -->
-      <div id="left-column" class="left-column">
-        <!-- TEXTO CENTRO -->
-        <div id="content-row">
-          <div class="content content--highlight content--intro">
-            <p class="text-large_w">
-              <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
-              <span data-i18n="hero_intro_text"></span>
+        <script>
+          gsap.registerPlugin(ScrollTrigger);
+          gsap.fromTo("#content-row",
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 2,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: "#left-column",
+                start: "top 25%",
+                end: "top 10%",
+                toggleActions: "restart none none reset",
+              }
+            }
+          );
+        </script>
+
+
+        <div id="maping-contorler" class="right-column">
+          <video id="trafficVideo" class="mapa_video" width="100%" preload="auto" muted playsinline></video>
+          <div class="center-controls">
+            <p class="text-large_M">
+              <mark class="hx-1 hx-2" data-i18n="CDMX Traffic"></mark>
             </p>
+            <span id="hourLabel" class="hour">--:--</span>
+            <input id="hourSlider" type="range" min="0" max="23" step="1">
           </div>
         </div>
       </div>
-      <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.fromTo("#content-row",
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: "#left-column",
-              start: "top 25%",
-              end: "top 10%",
-              toggleActions: "restart none none reset",
-            }
-          }
-        );
-      </script>
+    </section>
+  </div>
 
-
-      <!-- COLUMNA DERECHA -->
-      <div id="maping-contorler" class="right-column">
-        <!-- VIDEO sin controles -->
-        <video id="trafficVideo" width="100%" preload="auto" muted playsinline></video>
-
-        <div class="center-controls">
-          <p class="text-large_M">
-            <mark class="hx-1 hx-2" data-i18n="CDMX Traffic"></mark>
-          </p>
-          <span id="hourLabel" class="hour">--:--</span>
-          <input id="hourSlider" type="range" min="0" max="23" step="1">
-        </div>
-      </div>
-
-
-
-
-      <script>
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.fromTo("#maping-contorler",
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 2,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: "#left-column",
-              start: "top 25%",
-              end: "top 10%",
-              toggleActions: "restart none none reset",
-            }
-          }
-        );
-      </script>
-      <script src="js/demo4/icons_bran.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.fromTo("#maping-contorler",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#left-column",
+          start: "top 25%",
+          end: "top 10%",
+          toggleActions: "restart none none reset",
+        }
+      }
+    );
+  </script>
+  <script src="js/demo4/icons_bran.js"></script>
   </section>
 
 
@@ -261,135 +262,151 @@
   <script src="js/demo4/ramdon_color.js"></script>
 
   <!-- Sticky content -->
-  <div class="wrap ">
-    <div class="content content--sticky bg-1">
+  <div class="stay">
+    <div class="wrap section">
+      <div class="content content--sticky bg-1">
+        <div class="content__grid">
+          <div class="content__textual">
+            <h2 class="content__title titlle-1">
+              <span data-i18n="Technology as a Force for"></span>
+              <span class="content__title_h2" data-i18n="Human Potential"></span>
+            </h2>
+            <p class="content__text text-meta" data-i18n="text of Human Potential"></p>
+          </div>
+          <div class="content__img-wrapper">
+            <div class="color_brand content__img content__img--large" id="circle_arrow"></div>
+            <script src="js/demo4/1_animation.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stay">
+      <!-- BG 2 -->
+      <div class="content content--sticky bg-2 content--reverse section">
+        <div class="content__grid">
+          <div class="content__textual">
+            <h2 class="content__title titlle-2">
+              <span data-i18n="Experimentation"></span>
+              <span class="content__title_h2" data-i18n="The Pathway to Innovation"></span>
+            </h2>
+            <p class="content__text text-meta" data-i18n="text of The Pathway to Innovation"></p>
+          </div>
+          <div class="content__img-wrapper">
+            <div class="color_brand content__img content__img--large" id="experimentation"></div>
+            <script src="js/demo4/2_animation.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stay">
+      <!-- BG 3 -->
+      <div class="content content--sticky bg-3 section">
+        <div class="content__grid">
+          <div class="content__textual">
+            <h2 class="content__title titlle-3">
+              <span data-i18n="Harnessing"></span>
+              <span class="content__title_h2" data-i18n="Collective Wisdom"></span>
+            </h2>
+            <p class="content__text text-meta" data-i18n="text of the Collective Wisdom"></p>
+          </div>
+          <div class="content__img-wrapper">
+            <div class="color_brand content__img content__img--large" id="colective-winsorth"></div>
+            <script src="js/demo4/3_animation.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <!-- BG 4 -->
+    <div class="content content--sticky bg-4 content--reverse section">
       <div class="content__grid">
         <div class="content__textual">
-          <h2 class="content__title titlle-1">
-            <span data-i18n="Technology as a Force for"></span>
-            <span class="content__title_h2" data-i18n="Human Potential"></span>
+          <h2 class="content__title titlle-4">
+            <span data-i18n="Public-Private Cooperation"></span>
+            <span class="content__title_h2" data-i18n="A Shared Responsibility"></span>
           </h2>
-          <p class="content__text text-meta" data-i18n="text of Human Potential"></p>
+          <p class="content__text text-meta" data-i18n="text of the A Shared Responsibility"></p>
         </div>
+
         <div class="content__img-wrapper">
-          <div class="color_brand content__img content__img--large" id="circle_arrow"></div>
-          <script src="js/demo4/1_animation.js"></script>
+          <div class="color_brand content__img content__img--large" id="colaboration-public-private"></div>
+          <script src="js/demo4/4_animation.js"></script>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- BG 2 -->
-    <div class="content content--sticky bg-2 content--reverse">
+  <div class="stay">
+    <!-- BG 5 -->
+    <div class="content content--sticky bg-5 section">
       <div class="content__grid">
         <div class="content__textual">
-          <h2 class="content__title titlle-2">
-            <span data-i18n="Experimentation"></span>
-            <span class="content__title_h2" data-i18n="The Pathway to Innovation"></span>
+          <h2 class="content__title titlle-5">
+            <span data-i18n="A Fluid"></span>
+            <span class="content__title_h2" data-i18n="and Responsive Agenda"></span>
           </h2>
-          <p class="content__text text-meta" data-i18n="text of The Pathway to Innovation"></p>
+          <p class="content__text text-meta" data-i18n="text of the and Responsive Agenda"></p>
         </div>
         <div class="content__img-wrapper">
-          <div class="color_brand content__img content__img--large" id="experimentation"></div>
-          <script src="js/demo4/2_animation.js"></script>
+          <div class="color_brand content__img content__img--large" id="fluid"></div>
+          <script src="js/demo4/5_animation.js"></script>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- BG 3 -->
-    <div class="content content--sticky bg-3">
+  <div class="stay">
+    <!-- BG 6 -->
+    <div class="content content--sticky bg-6 content--reverse section">
       <div class="content__grid">
         <div class="content__textual">
-          <h2 class="content__title titlle-3">
-            <span data-i18n="Harnessing"></span>
-            <span class="content__title_h2" data-i18n="Collective Wisdom"></span>
+          <h2 class="content__title titlle-6">
+            <span data-i18n="Collaboration"></span>
+            <span class="content__title_h2" data-i18n="and Partnership"></span>
           </h2>
-          <p class="content__text text-meta" data-i18n="text of the Collective Wisdom"></p>
+          <p class="content__text text-meta" data-i18n="text of and Partnership"></p>
+        </div>
+
+        <div class="content__img-wrapper">
+          <div class="color_brand content__img F" id="collavoration"></div>
+          <script src="js/demo4/6_animation.js"></script>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <!-- BG 7 -->
+    <div class="content content--sticky bg-7 section">
+      <div class="content__grid">
+        <div class="content__textual">
+          <h2 class="content__title titlle-7">
+            <span data-i18n="An Identity Rooted"></span>
+            <span class="content__title_h2" data-i18n="in Innovation"></span>
+          </h2>
+          <p class="content__text text-meta" data-i18n="text of the in Innovation"></p>
         </div>
         <div class="content__img-wrapper">
-          <div class="color_brand content__img content__img--large" id="colective-winsorth"></div>
-          <script src="js/demo4/3_animation.js"></script>
+          <div class="color_brand content__img content__img--large" id="innovation"></div>
+          <script src="js/demo4/7_animation.js"></script>
         </div>
       </div>
     </div>
   </div>
+  </div>
 
-  <!-- BG 4 -->
-  <div class="content content--sticky bg-4 content--reverse">
-    <div class="content__grid">
-      <div class="content__textual">
-        <h2 class="content__title titlle-4">
-          <span data-i18n="Public-Private Cooperation"></span>
-          <span class="content__title_h2" data-i18n="A Shared Responsibility"></span>
-        </h2>
-        <p class="content__text text-meta" data-i18n="text of the A Shared Responsibility"></p>
-      </div>
-
-      <div class="content__img-wrapper">
-        <div class="color_brand content__img content__img--large" id="colaboration-public-private"></div>
-        <script src="js/demo4/4_animation.js"></script>
-      </div>
+  <div class="stay">
+    <div class="content content--highlight content--outro section">
+      <p class="text-large_w" data-i18n="text of the to Action">
+      </p>
+      <br><br>
+      <p class="text-large_M"> <mark class="hx hx-3" data-i18n="text 2 of the to Action"></mark> </p>
+      </p>
     </div>
-  </div>
-
-  <!-- BG 5 -->
-  <div class="content content--sticky bg-5">
-    <div class="content__grid">
-      <div class="content__textual">
-        <h2 class="content__title titlle-5">
-          <span data-i18n="A Fluid"></span>
-          <span class="content__title_h2" data-i18n="and Responsive Agenda"></span>
-        </h2>
-        <p class="content__text text-meta" data-i18n="text of the and Responsive Agenda"></p>
-      </div>
-      <div class="content__img-wrapper">
-        <div class="color_brand content__img content__img--large" id="fluid"></div>
-        <script src="js/demo4/5_animation.js"></script>
-      </div>
-    </div>
-  </div>
-
-  <!-- BG 6 -->
-  <div class="content content--sticky bg-6 content--reverse">
-    <div class="content__grid">
-      <div class="content__textual">
-        <h2 class="content__title titlle-6">
-          <span data-i18n="Collaboration"></span>
-          <span class="content__title_h2" data-i18n="and Partnership"></span>
-        </h2>
-        <p class="content__text text-meta" data-i18n="text of and Partnership"></p>
-      </div>
-
-      <div class="content__img-wrapper">
-        <div class="color_brand content__img F" id="collavoration"></div>
-        <script src="js/demo4/6_animation.js"></script>
-      </div>
-    </div>
-  </div>
-
-  <!-- BG 7 -->
-  <div class="content content--sticky bg-7">
-    <div class="content__grid">
-      <div class="content__textual">
-        <h2 class="content__title titlle-7">
-          <span data-i18n="An Identity Rooted"></span>
-          <span class="content__title_h2" data-i18n="in Innovation"></span>
-        </h2>
-        <p class="content__text text-meta" data-i18n="text of the in Innovation"></p>
-      </div>
-      <div class="content__img-wrapper">
-        <div class="color_brand content__img content__img--large" id="innovation"></div>
-        <script src="js/demo4/7_animation.js"></script>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="content content--highlight content--outro">
-    <p class="text-large_w" data-i18n="text of the to Action">
-    </p>
-    <br><br>
-    <p class="text-large_M"> <mark class="hx hx-3" data-i18n="text 2 of the to Action"></mark> </p>
-    </p>
   </div>
   <!-- <footer id="contact">
       <div class="footer-container">
@@ -404,6 +421,9 @@
         </p>
       </div>
     </footer> -->
+
+
+
 
 
   <!-- SVG PUNTERO -->
@@ -439,9 +459,6 @@
   </div>
   <script src="js/imagesloaded.pkgd.min.js"></script>
 
-
-
-
   <header class="sidebar" id="site-header">
     <div id="svg-container"></div>
   </header>
@@ -449,7 +466,36 @@
 
 
 
+<script>
+  const sections = document.querySelectorAll('#stay');
+  let isScrolling = false;
 
+  window.addEventListener("scroll", () => {
+    if (isScrolling) return;
+
+    clearTimeout(window.scrollTimeout);
+    window.scrollTimeout = setTimeout(() => {
+      // Buscar la sección más cercana al top
+      let closest = null;
+      let closestOffset = Infinity;
+
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        const offset = Math.abs(rect.top); // distancia al top
+        if (offset < closestOffset) {
+          closestOffset = offset;
+          closest = sec;
+        }
+      });
+
+      if (closest) {
+        isScrolling = true;
+        closest.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => (isScrolling = false), 700);
+      }
+    }, 100);
+  });
+</script>
 
 
 
