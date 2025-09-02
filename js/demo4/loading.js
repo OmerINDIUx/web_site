@@ -49,24 +49,31 @@ document.addEventListener("DOMContentLoaded", () => {
   safeTo("#elemento2", { x: 100, duration: 1 });
   safeTo("#elemento3", { scale: 1.2, duration: 1 });
 
-  // Animación de íconos de esquina y texto
-  const cornerTimeline = gsap.timeline();
-  cornerTimeline
-    .from(".top-left", {
-      x: window.innerWidth / 2 - 50,
-      y: window.innerHeight / 2 - 50,
-      scale: 0.2,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out"
-    })
-    .from(".bottom-right", {
-      x: -(window.innerWidth / 2 - 50),
-      y: -(window.innerHeight / 2 - 50),
-      scale: 0.2,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out"
+
+
+
+
+
+
+// Animación de íconos de esquina y texto
+const cornerTimeline = gsap.timeline();
+
+cornerTimeline
+    .to(".top-right1", {
+    x: window.innerWidth / 2 - 450,   // parte desde el centro en X
+    y: -(window.innerHeight / 2 - 380), // parte desde el centro en Y invertido
+    scale: 0.8,
+    opacity: 1,
+    duration: 1,
+    ease: "power2.out"
+  })
+.to(".bottom-left1", {
+    x: -(window.innerHeight / 2 - 50),   // parte desde el centro en X
+    y: window.innerHeight / 2 - 380, // parte desde el centro en Y invertido
+    scale: 0.8,
+    opacity: 1,
+    duration: 1,
+    ease: "power2.out"
     }, "<")
     .from("#text_loading", {
       opacity: 0,
@@ -74,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 1,
       ease: "power2.out"
     });
-
+    
   tl.add(cornerTimeline);
 
   // Esperar a que termine animación y fuentes
@@ -100,4 +107,55 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+
+
+  Promise.allSettled([
+  loadFont().catch(() => console.warn("⚠️ No se cargó power_grotesk a tiempo")),
+  new Promise(resolve => tl.eventCallback("onComplete", resolve))
+]).then(() => {
+  clearInterval(dotInterval);
+
+  // ✨ Animación de salida
+  const exitTimeline = gsap.timeline({
+    onComplete: () => {
+      gsap.to(loaderOverlay, {
+        opacity: 0,
+        duration: 0.5,
+        onComplete: () => {
+          loaderOverlay.style.display = "none";
+          document.body.classList.remove("loading");
+        }
+      });
+    }
+  });
+
+  // Texto se desvanece
+  exitTimeline.to("#text_loading", {
+    opacity: 0,
+    y: -20,
+    duration: 0.6,
+    ease: "power2.in"
+  }, 0);
+
+  // Íconos se expanden hacia afuera y se desvanecen
+  exitTimeline.to(".top-right1", {
+    x: window.innerWidth,   // sale más a la derecha
+    y: -window.innerHeight, // sube más
+    scale: 1.2,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.in"
+  }, 0);
+
+  exitTimeline.to(".bottom-left1", {
+    x: -window.innerWidth,   // se va más a la izquierda
+    y: window.innerHeight,   // baja más
+    scale: 1.2,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power2.in"
+  }, 0);
+});
+
 });

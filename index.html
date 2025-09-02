@@ -27,12 +27,12 @@
   <script src="js/splitting.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
   <!-- Lógica modular -->
-  <script type="module" src="js/demo4/loading.js"></script>
   <script type="module" src="js/demo4/index.js"></script>
 </head>
 <!-- Sidebar/menu -->
 
 <body class="loading demo-4">
+  <script type="module" src="js/demo4/loading.js"></script>
 
   <script>
     let resizeTimer;
@@ -60,7 +60,7 @@
   <!-- Loader 2-->
 
 
-  <!-- <div class="layout"> -->   
+  <!-- <div class="layout"> -->
 
 
 
@@ -443,8 +443,8 @@
 
 
   <div id="loader-overlay">
-    <div class="corner-icon1 top-left1">
-      <img id="svg3" class="icon4" src="img/bran-icon-01.svg" alt="Icono inicio">
+    <div class="corner-icon1 top-right1">
+      <img id="svg3" class="icon4" src="svg\cornner_top_right_loading.svg" alt="Icono inicio">
     </div>
     <h1 class="complment_loader">Cities are humanity’s greatest creation. <br> smart by definition.</h1>
     <div class="loader-box">
@@ -453,8 +453,8 @@
         <p id="loading"></p>
       </div>
     </div>
-    <div class="corner-icon1 bottom-right1">
-      <img id="svg4" class="icon4" src="img/bran-icon-02.svg" alt="Icono final">
+    <div class="corner-icon1 bottom-left1">
+      <img id="svg4" class="icon4" src="svg/cornner_bottom_left_loading.svg" alt="Icono final">
     </div>
   </div>
   <script src="js/imagesloaded.pkgd.min.js"></script>
@@ -466,36 +466,36 @@
 
 
 
-<script>
-  const sections = document.querySelectorAll('#stay');
-  let isScrolling = false;
+  <script>
+    const sections = document.querySelectorAll('#stay');
+    let isScrolling = false;
 
-  window.addEventListener("scroll", () => {
-    if (isScrolling) return;
+    window.addEventListener("scroll", () => {
+      if (isScrolling) return;
 
-    clearTimeout(window.scrollTimeout);
-    window.scrollTimeout = setTimeout(() => {
-      // Buscar la sección más cercana al top
-      let closest = null;
-      let closestOffset = Infinity;
+      clearTimeout(window.scrollTimeout);
+      window.scrollTimeout = setTimeout(() => {
+        // Buscar la sección más cercana al top
+        let closest = null;
+        let closestOffset = Infinity;
 
-      sections.forEach(sec => {
-        const rect = sec.getBoundingClientRect();
-        const offset = Math.abs(rect.top); // distancia al top
-        if (offset < closestOffset) {
-          closestOffset = offset;
-          closest = sec;
+        sections.forEach(sec => {
+          const rect = sec.getBoundingClientRect();
+          const offset = Math.abs(rect.top); // distancia al top
+          if (offset < closestOffset) {
+            closestOffset = offset;
+            closest = sec;
+          }
+        });
+
+        if (closest) {
+          isScrolling = true;
+          closest.scrollIntoView({ behavior: "smooth" });
+          setTimeout(() => (isScrolling = false), 700);
         }
-      });
-
-      if (closest) {
-        isScrolling = true;
-        closest.scrollIntoView({ behavior: "smooth" });
-        setTimeout(() => (isScrolling = false), 700);
-      }
-    }, 100);
-  });
-</script>
+      }, 100);
+    });
+  </script>
 
 
 
