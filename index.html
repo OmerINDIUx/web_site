@@ -77,20 +77,6 @@
     </div>
 
 
-
-    <button class="phi" aria-label="Logo Phi">
-      <img src="img/phi-01.png" alt="Logo Phi" />
-      <span class="tooltip-phi">Esta página es interactiva por lo tanto nunca la veras igual <br><br>
-        <li>mapas</li>
-        <li>tiempo</li>
-        <li>radiación</li>
-        <li>temperatura</li>
-      </span>
-    </button>
-
-
-
-
     <script>
       const langBtn = document.querySelector(".lang-btn");
       const hamburgerBtn = document.querySelector(".hamburger");
@@ -109,13 +95,59 @@
     </script>
   </div>
 
+  <div class="info-phi">
+    <button class="phi" aria-label="Logo Phi">
+      <img src="img/phi-01.png" alt="Logo Phi" />
+      <span class="tooltip-phi"> <a data-i18n="info phi"></a>
+      </span>
+    </button>
+  </div>
 
   <nav class="nav menu-fullscreen menu--iris" id="fullscreen-menu">
     <button class="close-menu" id="close-menu" aria-label="Cerrar menú">✕</button>
+
+
     <a href="#" class="menu__item" data-scrollto="0" data-i18n="menu home"></a>
     <a href="#map" class="menu__item" data-i18n="menu about"></a>
     <a href="#" class="menu__item" data-i18n="menu projects"></a>
     <a href="#contact" class="menu__item" data-i18n="menu contact"></a>
+
+    <script>
+      // Tu objeto i18n
+      const i18n = {
+        "menu home": "HOME",
+        "menu about": "INDIx",
+        "menu projects": "PROJECTS",
+        "menu contact": "CONTACT",
+        "menu homef": "HOME→",
+        "menu aboutf": "INDIx→",
+        "menu projectsf": "PROJECTS→",
+        "menu contactf": "CONTACT→"
+      };
+
+      // Inicializamos los enlaces con el texto original
+      document.querySelectorAll('.menu__item').forEach(item => {
+        const key = item.getAttribute('data-i18n');
+        item.textContent = i18n[key];
+
+        // Hover para añadir la flecha
+        item.addEventListener('mouseenter', () => {
+          const keyF = item.getAttribute('data-i18n') + 'f';
+          item.textContent = i18n[keyF];
+        });
+
+        // Quitar la flecha al salir
+        item.addEventListener('mouseleave', () => {
+          const key = item.getAttribute('data-i18n');
+          item.textContent = i18n[key];
+        });
+      });
+    </script>
+
+
+
+
+
     <div class="social-icons">
       <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
         <img class="redes-sociales" src="img/social_networt_icon/facebook.png">
@@ -184,7 +216,7 @@
           <div id="content-row">
             <div class="content content--highlight content--intro">
               <p class="text-large_w">
-                <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark>
+                <mark class="hx hx-3" data-i18n="hero_highlighted_text"></mark> <br>
                 <span data-i18n="hero_intro_text"></span>
               </p>
             </div>
@@ -226,6 +258,13 @@
             </p>
             <span id="hourLabel" class="hour">--:--</span>
             <input id="hourSlider" type="range" min="0" max="23" step="1">
+            <p class="text-large_M">
+              <br>
+
+              <mark class="hx-1 hx-2" data-i18n="cdmx traffic page food1"></mark> <br>
+              <mark class="hx-1 hx-2" data-i18n="cdmx traffic page food2"></mark> <br>
+              <mark class="hx-1 hx-2" data-i18n="cdmx traffic page food3"></mark>
+            </p>
           </div>
         </div>
       </div>

@@ -39,19 +39,27 @@
   pointer-events: all;
 }
 
-/* ENLACES */
 .menu__item {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
   position: relative;
   display: inline-block;
   color: white;
   text-decoration: none;
   font-size: 3rem;
-  font-weight: 600;
-  padding: 1rem 2rem;
+  padding: 3rem 2rem;
   transition: color 0.3s ease;
+  margin-right: 0%;
   text-align: left;
 }
 
+.menu__item {
+  display: block; /* para que funcione el margin */
+  margin-left: auto; /* empuja a la derecha */
+  width: fit-content; /* evita que ocupe todo el ancho */
+}
 /* Pseudo-elementos decorativos */
 .menu__item::before,
 .menu__item::after {
@@ -124,8 +132,8 @@
   display: flex;
   gap: 1rem;
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
+  bottom: 19.5rem;
+  left: 15rem;
   justify-content: center;
   z-index: 1000;
 }
@@ -294,48 +302,6 @@
   margin-bottom: auto; /* para centrar verticalmente el grupo */
 }
 
-.phi {
-  position: relative !important; /* cambiar de absolute a relative */
-  margin: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.phi img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  display: block;
-}
-
-/* TOOLTIP STYLES */
-.tooltip-phi {
-  position: absolute;
-  bottom: 90%; /* arriba del botón */
-  left: 550%;
-  transform: translateX(-50%);
-  padding: 6px 12px;
-  font-size: 14px;
-  color: white;
-  white-space: nowrap;
-  background: rgba(77, 77, 77, 0.301);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  border-radius: 8px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  z-index: 999;
-}
-
-/* Mostrar tooltip al hacer hover */
-.phi:hover .tooltip-phi {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-4px);
-}
 
 @media (max-width: 768px) {
   .buttons-menu {
@@ -352,7 +318,7 @@
     background-color: #ff6e6100;
     justify-content: flex-end; /* Esto los lleva a la derecha */
     align-items: center; /* Centrado vertical */
-    display: flex
+    display: flex;
   }
 
   .top-buttons {
@@ -384,24 +350,5 @@
   .hamburger span {
     height: 4px;
     width: 60%;
-  }
-
-  .phi {
-    position: fixed !important;
-    bottom: 1rem;
-    left: 1rem;
-    z-index: 1002;
-  }
-  .phi img {
-    width: 32px;
-    height: 32px;
-  }
-
-  .tooltip-phi {
-    left: 50%;
-    bottom: 120%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    padding: 4px 8px;
   }
 }

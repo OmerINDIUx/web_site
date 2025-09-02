@@ -1,25 +1,34 @@
 {
   "menu home": "HOME",
-  "menu about": "INDIx",
+  "menu about": "INDIlab",
   "menu projects": "PROJECTS",
   "menu contact": "CONTACT",
 
+  "menu homef": "HOME→",
+  "menu aboutf": "INDIlab→",
+  "menu projectsf": "PROJECTS→",
+  "menu contactf": "CONTACT→",
+
   "CDMX Traffic": "CDMX Traffic",
-  "hero_highlighted_text": "Cities are living systems,",
-  "hero_intro_text": "  where innovation, creativity, and possibilities converge At INDIx, we think of cities as dynamic, ever-evolving entities that embody our collective potential. We believe in a future where technology and community work hand in hand to help humanity thrive in urban environments.",
+  "hero_highlighted_text": "Cities are living systems.",
+  "hero_intro_text": "  where innovation, creativity, and possibilities converge At INDIlab, we think of cities as dynamic, ever-evolving entities that embody our collective potential. We believe in a future where technology and community work hand in hand to help humanity thrive in urban environments.",
   "icon_start_alt": "Start icon",
   "icon_end_alt": "End icon",
+  "cdmx traffic page food1": "Simulated daily trips in ",
+  "cdmx traffic page food2": "Mexico City by time. Data from Mapbox,",
+
+  "cdmx traffic page food3": "analysis and visualization by INDIx",
 
   "Technology as a Force for": " Technology as a Force ",
   "Human Potential": " for Human Potential",
   "text of Human Potential": "Just as cities are crucibles of innovation, technology can be a catalyst that unlocks and amplifies human potential. When used ethically, it can empower overlooked communities, reveal invisible needs, and fuel just, informed decisions.",
-  "text of Human Potential 2": "At INDIx, technology is a means to a greater purpose: improving urban life, fostering creativity, and sparking progress.",
+  "text of Human Potential 2": "At INDIlab, technology is a means to a greater purpose: improving urban life, fostering creativity, and sparking progress.",
 
   "Experimentation": "Experimentation:",
   "The Pathway to Innovation": " The Pathway to Innovation",
   "text of The Pathway to Innovation": "We embrace an experimental mindset, formulating hypotheses, prototyping, testing in real environments, and documenting every outcome. Success lies as much in what we learn from failure as in what we achieve. Each experiment—win or lose—expands our shared urban intelligence.",
 
-  "Harnessing": "Harnessing:",
+  "Harnessing": "Harnessing",
   "Collective Wisdom": " Collective Wisdom",
   "SUB Collective Wisdom": "Cities speak: we listen.",
   "text of the Collective Wisdom": "The knowledge embedded in communities is a resource too vast to ignore. We seek it out through engagement with those who live, work, and create in urban environments. Often, the most valuable insights emerge at the edges of official systems—in markets, grassroots networks, and cultural practices. By integrating these unplanned systems, we design solutions that reflect the authentic character of cities. ",
@@ -39,7 +48,7 @@
 
   "An Identity Rooted": "An Identity Rooted",
   "in Innovation": " in Innovation ",
-  "text of the in Innovation": " INDIx aims to be both an action hub and a thought leader in urban experimentation. Building on Grupo INDI’s legacy of transformative engineering, we now apply cutting-edge tools and methods to create impact for our clients and for the communities we serve.",
+  "text of the in Innovation": " INDIlab aims to be both an action hub and a thought leader in urban experimentation. Building on Grupo INDI’s legacy of transformative engineering, we now apply cutting-edge tools and methods to create impact for our clients and for the communities we serve.",
 
   "The Call": " The Future of Cities",
   "to Action": "  Is Ours to Shape ",
@@ -49,5 +58,7 @@
 
   "Get Involved": "Get Involved",
 
-  "See Our Projects ": "See Our Projects"
+  "See Our Projects ": "See Our Projects",
+
+  "info phi": "La página de INDIlab está diseñada y desarrollada para interactuar con información sobre clima, radiación, temperatura y tráfico de la Ciudad de México, adaptando su diseño en tiempo real; por eso, rara vez la verás igual."
 }
