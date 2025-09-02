@@ -17,15 +17,16 @@
 }
 
 .content--sticky {
-  width: 94vw;
+  width: calc(100% - 100px); /* ocupa todo el ancho menos los 175px de la izquierda */
   height: 100vh;
   position: sticky;
   top: 0;
-  left: 5.3%;
-  margin: 2% auto 0;
+  margin-left: 100px; /* espacio solo a la izquierda */
+  margin-right: 0;
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+
 
 /* ------------------ GRID ESTRUCTURA ------------------ */
 .content__grid {
