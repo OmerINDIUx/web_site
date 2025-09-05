@@ -20,7 +20,7 @@
             background: #eee;
             justify-content: center;
             align-items: center;
-            height: 400vh;
+            height: 390vh;
         }
 
         .gif-container {
@@ -45,6 +45,175 @@
         #gif1 {
             opacity: 1;
         }
+
+
+        section {
+            min-height: 105vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* CARDS */
+        .card {
+            color: black;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h1,
+        .card h2,
+        .card h3 {
+            margin: 0.5rem 0;
+        }
+        
+.card p {
+  line-height: 1.5;
+}
+
+p {
+  color: black;
+}
+
+.black {
+  color: black;
+}
+
+
+
+
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url('../../../img/noise.png');
+  background-repeat: repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: grain 8s steps(10) infinite;
+  z-index: 0;
+}
+
+/* Ruido automático en cualquier bloque con fondo #eee o #eeeeee */
+*[style*="background: #eee"],
+*[style*="background: #eeeeee"],
+*[style*="background-color: #eee"],
+*[style*="background-color: #eeeeee"],
+#image-sequence,
+.card,
+.TextLarge {
+  position: relative;
+  background-color: #eeeeee;
+  overflow: hidden;
+}
+
+*[style*="background: #eee"]::before,
+*[style*="background: #eeeeee"]::before,
+*[style*="background-color: #eee"]::before,
+*[style*="background-color: #eeeeee"]::before,
+#image-sequence::before,
+.card::before,
+.TextLarge::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background-image: url('../../../img/noise.png');
+  background-repeat: repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: grain 8s steps(10) infinite;
+  z-index: 0;
+}
+
+/* Contenido encima del ruido */
+#image-sequence > *,
+.card > *,
+.TextLarge > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* VIDEO */
+.video-scroll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.video-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-fullscreen video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* CANVAS */
+#image-sequence {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: #eeeeee;
+}
+
+/* TEXTO */
+.TextLarge {
+  margin-top: 12vh;
+  text-align: center;
+  font-size: 1rem;
+  color: black;
+  padding: 4rem 2rem;
+}
+
+.TextLarge div {
+  max-width: 900px;
+  text-align: justify;
+  color: black;
+  line-height: 1.8;
+}
+
+.TextLarge h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: black;
+}
+
+
+/* ANIMACIÓN NOISE */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+}
     </style>
 </head>
 
@@ -54,25 +223,80 @@
         <img src="images/aNCHOR-001-reto.gif" alt="Innovación Urbana 2" id="gif2">
     </div>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+    <section>
+        <div class="card">
+            <h2>Nota Conceptual de Proyecto </h2>
+            <h1>Vivienda Modular </h1>
+            <h3>Diciembre 2024 </h3>
+        </div>
 
-        // Timeline controlado por scroll
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".gif-container",
-                start: "top top",
-                end: "+=2000",  // 🔹 2000px de scroll para animar
-                scrub: true,
-                pin: true,
-                markers: true
-            }
 
-        });
+    </section>
 
-        tl.to("#gif1", { opacity: 0, duration: 1 })
-            .to("#gif2", { opacity: 1, duration: 1 }, "<"); // "<" = empieza al mismo tiempo que gif1 se desvanece
-    </script>
+    <section>
+        <div class="card">
+            <p>Las viviendas prefabricadas, ampliamente utilizadas en países como Suecia y Japón, son una solución
+                eficiente y sostenible para abordar crisis habitacionales. Producidas en fábricas y ensambladas en el
+                sitio, optimizan recursos, reducen el impacto ambiental y se adaptan a normativas locales para contextos
+                urbanos o rurales. Este método puede reducir costos en un 20% y tiempos de construcción hasta en un 50%,
+                destacándose como una alternativa moderna y práctica frente a los métodos tradicionales 2.</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card">
+            <p>Las viviendas modulares permiten construcciones rápidas y eficientes, además de integrarse con
+                estrategias como la reutilización de contenedores marítimos o el Cohousing. Estas opciones, combinadas,
+                conforman un ecosistema flexible de soluciones adaptables a distintos contextos urbanos y necesidades
+                habitacionales</p>
+        </div>
+    </section>
+
+    <section>
+        <div class="card" id="cambio_gif">
+            <p>Esta nota conceptual expone argumentos sobre la viabilidad de las viviendas modulares como una
+                alternativa capaz de transformar los desafíos actuales en oportunidades de desarrollo social y
+                ambiental. Esta solución no solo cumple con las normativas vigentes, sino que también incorpora
+                elementos de sostenibilidad y adaptabilidad frente a riesgos geológicos, representando una opción
+                accesible y moderna para atender la creciente demanda de vivienda</p>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="card">
+            <p>Las viviendas modulares se pueden adaptar de distintas maneras, tal como las viviendas en contenedores
+                marítimos que es una técnica que ha ganado reconocimiento por su versatilidad y sostenibilidad. Estos
+                contenedores, diseñados originalmente para el transporte de mercancías, pueden ser reutilizados para
+                crear espacios habitables con un impacto ambiental reducido. Más allá del uso residencial, su
+                flexibilidad permite adaptarlos como oficinas, restaurantes u otros espacios funcionales.</p>
+        </div>
+    </section>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Gif1 se apaga al llegar a la sección con id #cambio_gif
+  gsap.to("#gif1", {
+    opacity: 0,
+    scrollTrigger: {
+      trigger: "#cambio_gif",
+      start: "top center",
+      toggleActions: "play none none reverse"
+    }
+  });
+
+  // Gif2 aparece al mismo tiempo
+  gsap.to("#gif2", {
+    opacity: 1,
+    scrollTrigger: {
+      trigger: "#cambio_gif",
+      start: "top center",
+      toggleActions: "play none none reverse"
+    }
+  });
+</script>
+
 </body>
 
 </html>
