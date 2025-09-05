@@ -101,7 +101,7 @@ body::before {
 
 /* TEXTO */
 .TextLarge {
-  margin-top: 120vh;
+  margin-top: 12vh;
   text-align: center;
   font-size: 1rem;
   color: black;
@@ -124,7 +124,7 @@ body::before {
 
 /* SECCIONES */
 section {
-  min-height: 100vh;
+  min-height: 105vh;
   display: flex;
   align-items: center;
   justify-content: center;
