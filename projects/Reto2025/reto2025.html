@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reto de Innovación Urbana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #eee;
+            justify-content: center;
+            align-items: center;
+            height: 400vh;
+        }
+
+        .gif-container {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .gif-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            max-height: 100vh;
+            width: auto;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            /* Todos ocultos por defecto */
+        }
+
+        /* 🔹 El primero visible desde el inicio */
+        #gif1 {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gif-container">
+        <img src="images/mix-001-reto_1.gif" alt="Innovación Urbana 1" id="gif1">
+        <img src="images/aNCHOR-001-reto.gif" alt="Innovación Urbana 2" id="gif2">
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Timeline controlado por scroll
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".gif-container",
+                start: "top top",
+                end: "+=2000",  // 🔹 2000px de scroll para animar
+                scrub: true,
+                pin: true,
+                markers: true
+            }
+
+        });
+
+        tl.to("#gif1", { opacity: 0, duration: 1 })
+            .to("#gif2", { opacity: 1, duration: 1 }, "<"); // "<" = empieza al mismo tiempo que gif1 se desvanece
+    </script>
+</body>
+
+</html>
