@@ -10,6 +10,15 @@ body {
 }
 
 
+
+#fullscreen-menu {
+    perspective: 1000px;
+
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+} 
+
+
 .layout {
   display: flex;
   min-height: 100vh;

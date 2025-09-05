@@ -4,33 +4,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeButton = document.getElementById('close-menu');
   const menuLinks = fullscreenMenu?.querySelectorAll('.menu__item') || [];
 
+  let menuOpen = false;
+
   function openMenu() {
+    menuOpen = true;
     fullscreenMenu.classList.add('show');
+
+    gsap.set(fullscreenMenu, {
+      transformOrigin: "top left",
+      transformPerspective: 1200
+    });
+
+    gsap.fromTo(fullscreenMenu,
+      {  rotateZ: 90, rotateY: -90,  opacity: 1 },
+      { rotateZ: 0, rotateY: 0, rotateZ: 0, opacity: 1, duration: 1.5, ease: "power4.out" }
+    );
   }
 
   function closeMenu() {
-    fullscreenMenu.classList.remove('show');
+    menuOpen = false;
+
+    gsap.to(fullscreenMenu, {
+      rotateZ: 90,
+      rotateY: -90,
+      opacity: 0,
+      transformOrigin: "top left",
+      transformPerspective: 1200,
+      duration: .6,
+      ease: "power4.in",
+      onComplete: () => fullscreenMenu.classList.remove('show')
+    });
   }
 
-  menuToggle?.addEventListener('click', openMenu);
-  closeButton?.addEventListener('click', closeMenu);
-
-  // Cerrar con tecla ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
+  menuToggle?.addEventListener('click', () => {
+    if (!menuOpen) openMenu();
   });
 
-  // Cerrar menú al hacer clic en un enlace
+  closeButton?.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) closeMenu();
+  });
+
   menuLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       closeMenu();
-
       const href = link.getAttribute('href');
       if (href && href.startsWith('#')) {
         setTimeout(() => {
           document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
+        }, 700);
       } else {
         window.location.href = href;
       }

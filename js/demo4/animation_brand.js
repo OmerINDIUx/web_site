@@ -34,9 +34,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const { transformOriginS, ys, sscale } = startAnimValues();
 
-  // Escala inicial del cuadrado
-  // gsap.set(squareGroup, { scale: 0.2, y: "5%", transformOrigin: transformOriginS });
-
   gsap.set(squareGroup, {
     scale: sscale,
     y: ys,
@@ -80,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     scrollTrigger: {
       trigger: "#svg-wrapper",
       start: "top top",
-      end: "bottom top",
+      end: "center top",
       scrub: 1,
       markers: true,
     },
